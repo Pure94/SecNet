@@ -12,4 +12,9 @@ public class BadaniaController {
     public String getBadaniaPage() {
         return "badania/index";
     }
+
+    @GetMapping("/archivum")
+    public String getArchivumPage() {
+        return "badania/archivum";
+    }
 }

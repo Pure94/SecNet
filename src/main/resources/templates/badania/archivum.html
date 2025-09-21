@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZASTRZEŻONE | Bunkry Network</title>
+    <link rel="stylesheet" th:href="@{/css/badania.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="archivum-body">
+
+<div class="warning-container">
+    <div class="warning-box">
+        <div class="warning-icon">⚠️</div>
+        <h1>NIEAUTORYZOWANY DOSTĘP</h1>
+        <p>Wykryto próbę dostępu do zastrzeżonych danych. Ta strefa jest objęta najwyższym stopniem tajności. <br> <strong>Natychmiast opuść tę stronę.</strong> Twoja aktywność jest monitorowana.</p>
+        <a href="/badania" class="back-button">POWRÓT DO BEZPIECZNEJ STREFY</a>
+    </div>
+</div>
+
+<main class="container archivum-content">
+    <section class="cyber-panel">
+        <div class="panel-header">
+            <div class="panel-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12 12q.825 0 1.413-.587Q14 10.825 14 10t-.587-1.413Q12.825 8 12 8q-.825 0-1.413.587Q10 9.175 10 10t.587 1.413Q11.175 12 12 12Zm0 7.5q1.3 0 2.4-.588 1.1-.587 1.95-1.562.85-.975 1.4-2.187.55-1.213.55-2.663 0-1.45-.55-2.662-.55-1.213-1.4-2.188-.85-.975-1.95-1.562-1.1-.588-2.4-.588-1.3 0-2.4.588-1.1.587-1.95 1.562-.85.975-1.4 2.188-.55 1.212-.55 2.662 0 1.45.55 2.663.55 1.212 1.4 2.187.85.975 1.95 1.562 1.1.588 2.4.588Zm0-2q-1.05 0-1.975-.5-1.125-1.1-1.6-2.15-.475-1.05-.475-2.35 0-1.3.475-2.35.475-1.05 1.6-2.15.925-.5 1.975-.5 1.05 0 1.975.5 1.125 1.1 1.6 2.15.475 1.05.475 2.35 0 1.3-.475 2.35-.475 1.05-1.6 2.15-.925.5-1.975.5Z"/></svg>
+            </div>
+            <h2>DZIENNIK BADAWCZY - WPIS 734</h2>
+        </div>
+        <div class="panel-content">
+            <div class="log-entry">
+                <h3>[LOG #002] Raport Incydentu | Projekt "Grzybniak"</h3>
+                <p class="log-date">Data: [DANE ZAKRYTE]</p>
+                <div class="entry-body">
+                    <p>
+                        Systemy monitoringu odnotowały anomalię energetyczną w sektorze T-41. Obiekt D-03 (kod operacyjny "Grzybniak") wykazał nieoczekiwaną aktywność neurologiczną. Wbrew wcześniejszym protokołom, sygnał nie był pasywny. Przez kilka minut emitował regularny, powtarzający się wzór, który nie odpowiada żadnemu znanemu schematowi. Poziom sygnału przekroczył 400% normy. Incydent jest traktowany jako krytyczny. Zalecono pełną kwarantannę sektora.
+                    </p>
+                    <p>
+                        Załączono obraz z momentu aktywacji. Pusta, pozbawiona wyrazu twarz, a jednak wydaje się, że... patrzy.
+                    </p>
+                    <img th:src="@{/images/badania/Grzybniak.png}" alt="Obiekt D-03 podczas aktywacji"/>
+                </div>
+            </div>
+
+            <div class="log-entry">
+                <h3>[LOG #001] Projekt "Chimera" - Notatki Dr. Kowalskiego</h3>
+                <p class="log-date">Data: [USUNIĘTO]</p>
+                <div class="entry-body">
+                    <p>
+                        <strong>Cel:</strong> Zbadanie wpływu genetycznie zmodyfikowanego *Ophiocordyceps unilateralis* na ludzkie neurony. Hipoteza zakładała możliwość kontrolowanej regeneracji tkanki nerwowej poprzez stymulację podobną do tej, której grzyb używa do kontrolowania gospodarza.
+                    </p>
+                    <p>
+                        <strong>Przebieg:</strong> Podmiot testowy D-03 (mężczyzna, lat 34, [USUNIĘTO]) został wystawiony na działanie aerozolu zawierającego zmodyfikowane zarodniki. Początkowe reakcje były obiecujące. Obserwowaliśmy zwiększoną aktywność neuronalną i... coś na kształt komunikacji telepatycznej. Podmiot opisywał "głosy" i "jedność z ulem".
+                    </p>
+                    <p>
+                        <strong>Incydent:</strong> Po 48 godzinach podmiot zaczął wykazywać skrajną agresję. Jego siła fizyczna wzrosła dziesięciokrotnie. Przebił tytanową szybę i zaatakował personel. Straciliśmy Dr. Malinowską i dwóch ochroniarzy, zanim udało się go zneutralizować. Ale to nie był już człowiek. Jego oczy... były puste. Poruszał się w sposób nienaturalny, jak marionetka. Z jego ust wydobywały się zarodniki.
+                    </p>
+                    <p>
+                        <strong>Wnioski:</strong> Eksperyment zakończył się katastrofą. Grzyb nie regeneruje, on asymiluje. Przejmuje kontrolę nad ciałem, tworząc nową, przerażającą formę życia. Projekt "Chimera" musi zostać natychmiast przerwany. Wszystkie próbki zniszczone. Boję się, że jest już za późno. Słyszę szepty w wentylacji.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<audio id="beep-sound" loop>
+    <source th:src="@{/sounds/beep.mp3}" type="audio/mpeg">
+</audio>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const audio = document.getElementById('beep-sound');
+        // Próba odtworzenia dźwięku po interakcji użytkownika
+        document.body.addEventListener('click', () => {
+            audio.play().catch(error => {
+                console.log("Odtwarzanie dźwięku zablokowane przez przeglądarkę. Wymagana interakcja użytkownika.");
+            });
+        }, { once: true });
+    });
+</script>
+
+</body>
+</html>

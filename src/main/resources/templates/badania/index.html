@@ -4,345 +4,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Badania nad grzybami leczniczymi | Bunkry Network</title>
+    <title>Projekt NeuroBioMyko | Bunkry Network</title>
     <link rel="stylesheet" th:href="@{/css/badania.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
 </head>
 <body>
-<header>
+<header class="cyber-header">
+    <div class="scanner-line"></div>
     <div class="container">
-        <h1>Badania nad grzybami leczniczymi</h1>
-        <p class="subtitle">Innowacyjne badania w leczeniu chorób neurodegeneracyjnych</p>
+        <div class="header-content">
+            <div class="logo-container">
+                <img th:src="@{/images/badania/logo.png}" alt="Logo NeuroBioMyko" width="150"/>
+                <div class="logo-glow"></div>
+                <h1>Projekt NeuroBioMyko</h1>
+            </div>
+            <p class="subtitle">Zaawansowane badania neurokognitywne z wykorzystaniem organizmów grzybowych</p>
+        </div>
     </div>
 </header>
 
 <main class="container">
-    <section class="intro">
-        <h2>Badania nad potencjałem terapeutycznym grzybów</h2>
-        <p>
-            W ostatnich dekadach naukowcy z całego świata prowadzą intensywne badania nad właściwościami
-            leczniczymi różnych gatunków grzybów. Szczególne zainteresowanie budzi ich potencjał w leczeniu
-            chorób neurodegeneracyjnych, takich jak choroba Alzheimera, demencja i depresja.
-        </p>
+    <section class="cyber-panel intro">
+        <div class="panel-header">
+            <div class="panel-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,10.5A1.5,1.5 0 0,1 13.5,12A1.5,1.5 0 0,1 12,13.5A1.5,1.5 0 0,1 10.5,12A1.5,1.5 0 0,1 12,10.5M7.5,10.5A1.5,1.5 0 0,1 9,12A1.5,1.5 0 0,1 7.5,13.5A1.5,1.5 0 0,1 6,12A1.5,1.5 0 0,1 7.5,10.5M16.5,10.5A1.5,1.5 0 0,1 18,12A1.5,1.5 0 0,1 16.5,13.5A1.5,1.5 0 0,1 15,12A1.5,1.5 0 0,1 16.5,10.5Z"></path>
+                </svg>
+            </div>
+            <h2>Zaawansowane badania neurokognitywne</h2>
+        </div>
+        <div class="panel-content">
+            <p>
+                Inicjatywa NeuroBioMyko reprezentuje przełom w neuronaukach XXI wieku. Wykorzystując ultranowoczesne
+                technologie bioinformatyczne i mikroskopię kwantową, analizujemy bioaktywne związki występujące
+                w organizmach grzybowych, które wykazują znaczący potencjał w leczeniu chorób neurodegeneracyjnych.
+            </p>
+            <div class="tech-stats">
+                <div class="stat-item">
+                    <div class="stat-value">97<span class="stat-unit">%</span></div>
+                    <div class="stat-label">Skuteczność</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2042</div>
+                    <div class="stat-label">Próbki</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">17<span class="stat-unit">+</span></div>
+                    <div class="stat-label">Odkrycia</div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section class="mushrooms-list">
-        <h2>Kluczowe gatunki grzybów w badaniach</h2>
-
-        <div class="mushroom-item" id="lion-mane">
-            <h3>Soplówka jeżowata (Lion's Mane)</h3>
-            <div class="mushroom-content">
-                <div class="mushroom-text">
-                    <p>
-                        Soplówka jeżowata (Hericium erinaceus) jest znana ze swoich neuroprotekcyjnych właściwości.
-                        Badania sugerują, że zawarte w niej związki stymulują produkcję czynnika wzrostu nerwów (NGF)
-                        i mogą wspierać regenerację komórek nerwowych.
+    <section class="cyber-panel researcher-section">
+        <div class="panel-header">
+            <div class="panel-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"></path>
+                </svg>
+            </div>
+            <h2>Nasi Główni Naukowcy</h2>
+        </div>
+        <div class="panel-content researcher-content">
+            <div class="researcher-card">
+                <div class="researcher-image-container">
+                    <img th:src="@{/images/badania/scientist.png}" alt="Dr Kamil Wielkogłwacki" class="researcher-image">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="researcher-info">
+                    <h3>Kamil Wielkogłwacki</h3>
+                    <p class="researcher-title">Badacz | Neurobiolog</p>
+                    <p class="researcher-bio">
+                        Dr Kamil Wielkogłwacki to wybitny naukowiec w dziedzinie neurobiologii i mykologii eksperymentalnej.
+                        Jego pionierskie badania nad wpływem związków pochodzenia grzybowego na plastyczność synaptyczną
+                        otworzyły nowe horyzonty w leczeniu chorób neurodegeneracyjnych. Prowadzi zespół, który dąży do
+                        zrozumienia i wykorzystania potencjału bioaktywnych molekuł do regeneracji tkanki nerwowej.
                     </p>
-                    <ul>
-                        <li>Wspomaga funkcje poznawcze</li>
-                        <li>Wykazuje działanie przeciwdepresyjne</li>
-                        <li>Zmniejsza stany zapalne w mózgu</li>
-                    </ul>
                 </div>
             </div>
-        </div>
 
-        <div class="mushroom-item" id="reishi">
-            <h3>Reishi (Lakownica lśniąca)</h3>
-            <div class="mushroom-content">
-                <div class="mushroom-text">
-                    <p>
-                        Reishi (Ganoderma lucidum) jest stosowany w tradycyjnej medycynie wschodniej od tysięcy lat.
-                        Współczesne badania wskazują na jego potencjał w regulacji układu odpornościowego oraz
-                        redukcji stresu i niepokoju.
+            <div class="researcher-card">
+                <div class="researcher-image-container">
+                    <img th:src="@{/images/badania/rafal.png}" alt="Rafał Grzybicki" class="researcher-image">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="researcher-info">
+                    <h3>Rafał Grzybicki</h3>
+                    <p class="researcher-title">Znany Mykolog Światowej Sławy</p>
+                    <p class="researcher-bio">
+                        Rafał Grzybicki to ceniony mykolog o międzynarodowej reputacji, którego praca skupia się na
+                        zastosowaniu zaawansowanej mykologii w neurobiologii. Jest ekspertem w badaniu rzadkich
+                        gatunków grzybów i ich wpływu na ludzki układ nerwowy, a jego odkrycia są fundamentalne dla
+                        rozwoju projektu NeuroBioMyko.
                     </p>
-                    <ul>
-                        <li>Wykazuje działanie neuroprotekcyjne</li>
-                        <li>Wspomaga jakość snu</li>
-                        <li>Redukuje stres oksydacyjny w mózgu</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="mushroom-item" id="psilocybin">
-            <h3>Grzyby psylocybinowe</h3>
-            <div class="mushroom-content">
-                <div class="mushroom-text">
-                    <p>
-                        Psylocybina, związek występujący w niektórych gatunkach grzybów, jest przedmiotem
-                        intensywnych badań klinicznych w leczeniu depresji opornej na leczenie, zaburzeń lękowych
-                        i uzależnień.
-                    </p>
-                    <ul>
-                        <li>Obiecujące wyniki w leczeniu ciężkiej depresji</li>
-                        <li>Potencjał w terapii lęku końca życia u pacjentów z chorobami terminalnymi</li>
-                        <li>Wspomaga neuroplastyczność mózgu</li>
-                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="research-findings">
-        <h2>Najnowsze odkrycia naukowe</h2>
-
-        <div class="research-item" hx-get="/badania/research/alzheimer" hx-trigger="click" hx-target="#research-details" hx-swap="innerHTML">
-            <h3>Badania nad chorobą Alzheimera</h3>
-            <p>Kliknij, aby zobaczyć szczegóły badań</p>
+    <section class="cyber-panel contact-panel">
+        <div class="panel-header">
+            <div class="panel-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M8,14H16V16H8V14M8,10H16V12H8V10M8,6H16V8H8V6Z"></path>
+                </svg>
+            </div>
+            <h2>Pozostań w kontakcie z Projektem NeuroBioMyko</h2>
         </div>
-
-        <div class="research-item" hx-get="/badania/research/depression" hx-trigger="click" hx-target="#research-details" hx-swap="innerHTML">
-            <h3>Badania nad depresją</h3>
-            <p>Kliknij, aby zobaczyć szczegóły badań</p>
-        </div>
-
-        <div class="research-item" hx-get="/badania/research/dementia" hx-trigger="click" hx-target="#research-details" hx-swap="innerHTML">
-            <h3>Badania nad innymi formami demencji</h3>
-            <p>Kliknij, aby zobaczyć szczegóły badań</p>
-        </div>
-
-        <div id="research-details" class="research-details">
-            <p>Wybierz kategorię badań powyżej, aby zobaczyć szczegółowe informacje.</p>
+        <div class="panel-content">
+            <p>
+                Jesteś zainteresowany postępami naszych badań, przyszłymi odkryciami i potencjalnymi zastosowaniami naszych technologii? Dołącz do naszej społeczności i bądź na bieżąco z najnowszymi informacjami.
+            </p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfrdl8FhlHJGXWKz3KJZQO-QWCSx0D7g0Wt795qaFi_Are1JA/viewform?usp=dialog" class="contact-button">
+                <span class="contact-button-text">KLIKNIJ TUTAJ</span>
+            </a>
         </div>
     </section>
 
-    <section class="future-research">
-        <h2>Przyszłość badań</h2>
-        <p>
-            Badania nad grzybami leczniczymi znajdują się wciąż we wczesnej fazie, ale dotychczasowe wyniki
-            są niezwykle obiecujące. Naukowcy przewidują, że w najbliższych latach możemy spodziewać się
-            przełomowych odkryć w zakresie leczenia chorób neurodegeneracyjnych przy pomocy związków
-            pochodzących z grzybów.
-        </p>
-        <p>
-            Kluczowe kierunki przyszłych badań obejmują:
-        </p>
-        <ul>
-            <li>Izolację i charakteryzację aktywnych związków</li>
-            <li>Badania kliniczne na większą skalę</li>
-            <li>Opracowanie standaryzowanych preparatów</li>
-            <li>Badanie mechanizmów działania na poziomie molekularnym</li>
-        </ul>
-    </section>
-</main>
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:hx="https://github.com/wimdeblauwe/htmx-spring-boot">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laboratorium Badań nad Grzybami | Bunkry Network</title>
-    <link rel="stylesheet" th:href="@{/css/badania.css}">
-    <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
-</head>
-<body>
-<header class="lab-header">
-    <div class="container">
-        <div class="lab-logo">
-            <span class="lab-icon">⚗️</span>
-            <h1>Laboratorium Mykologiczne</h1>
+    <section class="cyber-panel species-analysis">
+        <div class="panel-header">
+            <div class="panel-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,8A2,2 0 0,1 14,10A2,2 0 0,1 12,12A2,2 0 0,1 10,10A2,2 0 0,1 12,8M17,16H7V15C7,13.67 9.33,13 12,13C14.67,13 17,13.67 17,15V16Z"></path>
+                </svg>
+            </div>
+            <h2>Analizowane organizmy</h2>
         </div>
-        <p class="lab-subtitle">Badania nad potencjałem terapeutycznym grzybów w chorobach neurodegeneracyjnych</p>
-    </div>
-</header>
 
-<main class="container">
-    <section class="lab-section intro">
-        <div class="lab-card">
-            <div class="lab-card-header">
-                <h2><span class="lab-icon">🧠</span> Projekt Badawczy</h2>
-            </div>
-            <div class="lab-card-content">
-                <p>
-                    Nasze laboratorium prowadzi pionierskie badania nad potencjałem leczniczym grzybów
-                    w kontekście chorób neurodegeneracyjnych, w tym demencji, choroby Alzheimera i depresji.
-                    Wykorzystujemy najnowocześniejsze technologie oraz metody badawcze do analizy
-                    związków bioaktywnych pochodzących z różnych gatunków grzybów.
-                </p>
-                <div class="lab-stats">
-                    <div class="lab-stat">
-                        <span class="lab-stat-value">17</span>
-                        <span class="lab-stat-label">Publikacji</span>
+        <div class="panel-content">
+            <div class="specimen-grid">
+                <div class="specimen-card">
+                    <div class="specimen-image">
+                        <img th:src="@{/images/badania/lionsmane.png}" alt="Soplówka jeżowata" class="hologram-effect"/>
+                        <div class="specimen-scan-lines"></div>
                     </div>
-                    <div class="lab-stat">
-                        <span class="lab-stat-value">42</span>
-                        <span class="lab-stat-label">Gatunków grzybów</span>
-                    </div>
-                    <div class="lab-stat">
-                        <span class="lab-stat-value">8</span>
-                        <span class="lab-stat-label">Lat badań</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="lab-section">
-        <div class="lab-card">
-            <div class="lab-card-header">
-                <h2><span class="lab-icon">🔬</span> Aktualne Badania</h2>
-            </div>
-            <div class="lab-card-content">
-                <div class="lab-tabs">
-                    <div class="lab-tab-buttons">
-                        <button class="lab-tab-button active" hx-get="#alzheimer-content" hx-target="#tab-content" hx-swap="innerHTML">Alzheimer</button>
-                        <button class="lab-tab-button" hx-get="#dementia-content" hx-target="#tab-content" hx-swap="innerHTML">Demencja</button>
-                        <button class="lab-tab-button" hx-get="#depression-content" hx-target="#tab-content" hx-swap="innerHTML">Depresja</button>
-                    </div>
-                    <div class="lab-tab-content" id="tab-content">
-                        <div id="alzheimer-content">
-                            <h3>Badania nad chorobą Alzheimera</h3>
-                            <p>
-                                Choroba Alzheimera jest jedną z najczęstszych form demencji, charakteryzującą się
-                                postępującym pogorszeniem funkcji poznawczych i pamięci. Nasze badania sugerują, że:
-                            </p>
-                            <ul class="lab-list">
-                                <li>Ekstrakty z soplówki jeżowatej mogą zmniejszać akumulację płytek amyloidowych w mózgu</li>
-                                <li>Związki zawarte w reishi mogą chronić neurony przed toksycznością beta-amyloidu</li>
-                                <li>Mikrodawki psylocybiny mogą zwiększać neuroplastyczność i formowanie nowych połączeń nerwowych</li>
-                            </ul>
-                            <p>
-                                W 2024 roku opublikowaliśmy wyniki przełomowego badania, w którym regularnie podawano ekstrakt z soplówki
-                                jeżowatej pacjentom z wczesną postacią choroby Alzheimera przez okres 12 miesięcy. Wyniki wskazują na
-                                znaczące spowolnienie postępu choroby w porównaniu do grupy kontrolnej.
-                            </p>
-                            <div class="lab-data-visual">
-                                <div class="lab-chart">
-                                    <div class="lab-chart-bar" style="height: 85%;">
-                                        <span>85%</span>
-                                    </div>
-                                    <p>Redukcja płytek amyloidowych</p>
-                                </div>
-                                <div class="lab-chart">
-                                    <div class="lab-chart-bar" style="height: 63%;">
-                                        <span>63%</span>
-                                    </div>
-                                    <p>Poprawa funkcji poznawczych</p>
-                                </div>
-                                <div class="lab-chart">
-                                    <div class="lab-chart-bar" style="height: 72%;">
-                                        <span>72%</span>
-                                    </div>
-                                    <p>Zmniejszenie stresu oksydacyjnego</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="dementia-content" style="display: none;">
-                            <h3>Badania nad innymi formami demencji</h3>
-                            <p>
-                                Oprócz choroby Alzheimera, grzyby lecznicze są badane pod kątem ich potencjału w leczeniu
-                                innych form demencji, takich jak demencja z ciałami Lewy'ego, demencja naczyniowa i inne.
-                                Kluczowe odkrycia obejmują:
-                            </p>
-                            <ul class="lab-list">
-                                <li>Właściwości przeciwzapalne grzybów mogą zmniejszać neurozapalenie, wspólny czynnik w wielu formach demencji</li>
-                                <li>Polisacharydy z grzybów leczniczych mogą poprawiać krążenie mózgowe, co jest szczególnie istotne w demencji naczyniowej</li>
-                                <li>Związki zawarte w grzybach mogą wspierać produkcję neurotrofin, które pomagają w przetrwaniu i regeneracji neuronów</li>
-                            </ul>
-                            <p>
-                                W 2025 roku rozpoczęto długoterminowe badanie kliniczne, które ocenia wpływ suplementacji mieszanką ekstraktów
-                                z trzech różnych gatunków grzybów leczniczych na funkcje poznawcze u osób z łagodnymi zaburzeniami poznawczymi
-                                i wczesnymi stadiami różnych form demencji.
-                            </p>
-                            <div class="lab-data-visual">
-                                <div class="lab-specimen">
-                                    <div class="lab-specimen-img">🍄</div>
-                                    <p>Reishi (Ganoderma lucidum)</p>
-                                </div>
-                                <div class="lab-specimen">
-                                    <div class="lab-specimen-img">🍄</div>
-                                    <p>Soplówka (Hericium erinaceus)</p>
-                                </div>
-                                <div class="lab-specimen">
-                                    <div class="lab-specimen-img">🍄</div>
-                                    <p>Cordyceps (Ophiocordyceps sinensis)</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="depression-content" style="display: none;">
-                            <h3>Badania nad depresją</h3>
-                            <p>
-                                Depresja jest jednym z najczęstszych zaburzeń psychicznych, dotykającym miliony ludzi na całym świecie.
-                                Nasze badania nad grzybami w kontekście leczenia depresji koncentrują się na:
-                            </p>
-                            <ul class="lab-list">
-                                <li>Terapeutycznym potencjale psylocybiny w leczeniu depresji opornej na leczenie</li>
-                                <li>Przeciwzapalnych właściwościach reishi, które mogą łagodzić objawy depresji</li>
-                                <li>Działaniu adaptogennym soplówki jeżowatej, pomagającym w regulacji hormonów stresu</li>
-                            </ul>
-                            <p>
-                                Badania kliniczne z 2023 roku pokazały, że terapia wspomagana psylocybiną może prowadzić do
-                                znaczącej remisji objawów u pacjentów z depresją oporną na standardowe leki. Efekty terapeutyczne
-                                utrzymywały się przez co najmniej 6 miesięcy u większości uczestników badania.
-                            </p>
-                            <div class="lab-molecule">
-                                <div class="lab-molecule-structure">
-                                    <!-- Stylized representation of psilocybin molecule -->
-                                    <div class="atom"></div>
-                                    <div class="atom"></div>
-                                    <div class="atom"></div>
-                                    <div class="bond"></div>
-                                    <div class="bond"></div>
-                                </div>
-                                <p>Struktura molekularna psylocybiny (C₁₂H₁₇N₂O₄P)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="lab-section">
-        <div class="lab-card">
-            <div class="lab-card-header">
-                <h2><span class="lab-icon">🧪</span> Badane Gatunki Grzybów</h2>
-            </div>
-            <div class="lab-card-content">
-                <div class="lab-specimens">
-                    <div class="lab-specimen-card">
-                        <div class="lab-specimen-image lions-mane"></div>
+                    <div class="specimen-data">
                         <h3>Soplówka jeżowata</h3>
-                        <p class="lab-specimen-latin">Hericium erinaceus</p>
+                        <div class="specimen-id">ID: HER-ERN-42X</div>
+                        <div class="specimen-latin">Hericium erinaceus</div>
                         <p>
-                            Znana ze swoich neuroprotekcyjnych właściwości. Zawarte w niej związki stymulują
-                            produkcję czynnika wzrostu nerwów (NGF) i wspierają regenerację komórek nerwowych.
+                            Wyizolowane neurotrofiny stymulują regenerację synaps i aksodendryty.
+                            Nasze testy potwierdzają wzrost poziomu NGF o 287% w obszarze hipokampa.
                         </p>
-                        <div class="lab-specimen-properties">
-                            <span class="lab-property">Neuroprotekcja</span>
-                            <span class="lab-property">Regeneracja</span>
-                            <span class="lab-property">Przeciwzapalne</span>
+                        <div class="specimen-properties">
+                            <span class="property">Neurogeneza</span>
+                            <span class="property">Regeneracja</span>
+                            <span class="property">Anti-apoptoza</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="lab-specimen-card">
-                        <div class="lab-specimen-image reishi"></div>
+                <div class="specimen-card">
+                    <div class="specimen-image">
+                        <img th:src="@{/images/badania/raishi.png}" alt="Reishi" class="hologram-effect"/>
+                        <div class="specimen-scan-lines"></div>
+                    </div>
+                    <div class="specimen-data">
                         <h3>Reishi</h3>
-                        <p class="lab-specimen-latin">Ganoderma lucidum</p>
+                        <div class="specimen-id">ID: GAN-LUC-86Z</div>
+                        <div class="specimen-latin">Ganoderma lucidum</div>
                         <p>
-                            Stosowany w tradycyjnej medycynie wschodniej od tysięcy lat. Wykazuje potencjał
-                            w regulacji układu odpornościowego oraz redukcji stresu i niepokoju.
+                            Triterpenoidy i beta-glukany wykazują silne działanie neuroprotekcyjne.
+                            Zarejestrowano 72% redukcję stanów zapalnych w obszarach korowych mózgu.
                         </p>
-                        <div class="lab-specimen-properties">
-                            <span class="lab-property">Adaptogen</span>
-                            <span class="lab-property">Immunomodulacyjne</span>
-                            <span class="lab-property">Antyoksydacyjne</span>
+                        <div class="specimen-properties">
+                            <span class="property">Immunomodulacja</span>
+                            <span class="property">Adaptogeneza</span>
+                            <span class="property">Antyoksydacja</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="lab-specimen-card">
-                        <div class="lab-specimen-image psilocybin"></div>
-                        <h3>Grzyby psylocybinowe</h3>
-                        <p class="lab-specimen-latin">Psilocybe spp.</p>
+                <div class="specimen-card">
+                    <div class="specimen-image">
+                        <img th:src="@{/images/badania/psychodelic.png}" alt="Psylocybina" class="hologram-effect"/>
+                        <div class="specimen-scan-lines"></div>
+                    </div>
+                    <div class="specimen-data">
+                        <h3>Psylocybina</h3>
+                        <div class="specimen-id">ID: PSI-CUB-19Y</div>
+                        <div class="specimen-latin">Psilocybe cubensis</div>
                         <p>
-                            Przedmiot intensywnych badań klinicznych w leczeniu depresji opornej na leczenie,
-                            zaburzeń lękowych i uzależnień. Wspomaga neuroplastyczność.
+                            Mikrodozowanie generuje zwiększoną neuroplastyczność i modulację receptorów
+                            serotoninowych 5-HT2A. Skany mózgu wykazują znaczące wzmocnienie połączeń między DMN i TPN.
                         </p>
-                        <div class="lab-specimen-properties">
-                            <span class="lab-property">Neuroplastyczność</span>
-                            <span class="lab-property">Przeciwdepresyjne</span>
-                            <span class="lab-property">Przeciwlękowe</span>
+                        <div class="specimen-properties">
+                            <span class="property">Neuroplastyczność</span>
+                            <span class="property">Modulacja</span>
+                            <span class="property">Konektomika</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="specimen-card">
+                    <a href="/badania/archivum" class="specimen-link">
+                        <div class="specimen-image">
+                            <img th:src="@{/images/badania/ophiocordyceps.png}" alt="Ophiocordyceps" class="hologram-effect"/>
+                            <div class="specimen-scan-lines"></div>
+                        </div>
+                        <div class="specimen-data">
+                            <h3 data-text="Ophiocordyceps">Ophiocordyceps</h3>
+                            <div class="specimen-id">ID: OPH-UNI-01X</div>
+                            <div class="specimen-latin">Ophiocordyceps unilateralis</div>
+                            <p>
+                                Gatunek ten wykazuje zdolność do przejmowania kontroli nad układem nerwowym gospodarza.
+                                Badania nad tym mechanizmem zostały wstrzymane. Dostęp do dalszych danych jest ściśle tajny.
+                            </p>
+                            <div class="specimen-properties">
+                                <span class="property property-danger">Kontrola umysłu</span>
+                                <span class="property property-danger">Pasożytnictwo</span>
+                                <span class="property property-danger">NIEBEZPIECZEŃSTWO</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cyber-panel research-data">
+        <div class="panel-header">
+            <div class="panel-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="M5,3H19A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3M7,7V9H9V7H7M11,7V9H13V7H11M15,7V9H17V7H15M7,11V13H9V11H7M11,11V13H13V11H11M15,11V13H17V11H15M7,15V17H9V15H7M11,15V17H13V15H11M15,15V17H17V15H15Z"></path>
+                </svg>
+            </div>
+            <h2>Dane badawcze | Neural-Map™</h2>
+        </div>
+
+        <div class="panel-content">
+            <div class="data-container">
+                <div class="neural-map">
+                    <div class="map-visualization">
+                        <div class="neural-node n1"></div>
+                        <div class="neural-node n2"></div>
+                        <div class="neural-node n3"></div>
+                        <div class="neural-connection c1"></div>
+                        <div class="neural-connection c2"></div>
+                    </div>
+                    <div class="map-data">
+                        <h3>Aktywność neuronalna po aplikacji ekstraktów</h3>
+                        <div class="data-timeline">
+                            <div class="timeline-marker">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">T+2h</div>
+                                <div class="marker-value">+42% aktywności</div>
+                            </div>
+                            <div class="timeline-marker">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">T+24h</div>
+                                <div class="marker-value">+78% neurogeneza</div>
+                            </div>
+                            <div class="timeline-marker">
+                                <div class="marker-dot"></div>
+                                <div class="marker-label">T+7d</div>
+                                <div class="marker-value">+129% plastyczność</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="molecular-display">
+                    <h3>Struktury molekularne bioaktywnych związków</h3>
+                    <div class="molecules">
+                        <div class="molecule">
+                            <div class="molecule-viz">
+                                <div class="atom a1"></div>
+                                <div class="atom a2"></div>
+                                <div class="atom a3"></div>
+                                <div class="bond b1"></div>
+                                <div class="bond b2"></div>
+                            </div>
+                            <div class="molecule-name">Hericenony-B</div>
+                        </div>
+                        <div class="molecule">
+                            <div class="molecule-viz">
+                                <div class="atom a1"></div>
+                                <div class="atom a2"></div>
+                                <div class="atom a3"></div>
+                                <div class="bond b1"></div>
+                                <div class="bond b2"></div>
+                            </div>
+                            <div class="molecule-name">Ganoderyczne kwasy</div>
+                        </div>
+                        <div class="molecule">
+                            <div class="molecule-viz">
+                                <div class="atom a1"></div>
+                                <div class="atom a2"></div>
+                                <div class="atom a3"></div>
+                                <div class="bond b1"></div>
+                                <div class="bond b2"></div>
+                            </div>
+                            <div class="molecule-name">Psylocybina</div>
                         </div>
                     </div>
                 </div>
@@ -350,43 +303,43 @@
         </div>
     </section>
 
-    <section class="lab-section">
-        <div class="lab-card">
-            <div class="lab-card-header">
-                <h2><span class="lab-icon">📊</span> Przyszłość Badań</h2>
+    <section class="cyber-panel future-protocols">
+        <div class="panel-header">
+            <div class="panel-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="currentColor" d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"></path>
+                </svg>
             </div>
-            <div class="lab-card-content">
-                <div class="lab-timeline">
-                    <div class="lab-timeline-item">
-                        <div class="lab-timeline-marker">2025</div>
-                        <div class="lab-timeline-content">
-                            <h3>Badania kliniczne II fazy</h3>
-                            <p>
-                                Rozpoczęcie badań klinicznych II fazy nad standaryzowanymi ekstraktami
-                                z soplówki jeżowatej i reishi u pacjentów z wczesną postacią choroby Alzheimera.
-                            </p>
+            <h2>Protokoły przyszłości</h2>
+        </div>
+
+        <div class="panel-content">
+            <div class="timeline-wrapper">
+                <div class="tech-timeline">
+                    <div class="timeline-node">
+                        <div class="node-year">2025</div>
+                        <div class="node-content">
+                            <h3>Synteza NeuroCap™</h3>
+                            <p>Opracowanie syntetycznej kapsułki z kompleksem związków mykologicznych,
+                                z precyzyjnym targetowaniem neuronalnym przy użyciu nanotechnologii.</p>
                         </div>
                     </div>
 
-                    <div class="lab-timeline-item">
-                        <div class="lab-timeline-marker">2026</div>
-                        <div class="lab-timeline-content">
-                            <h3>Identyfikacja nowych związków</h3>
-                            <p>
-                                Prace nad izolacją i charakterystyką nowych związków bioaktywnych
-                                z mniej znanych gatunków grzybów leczniczych.
-                            </p>
+                    <div class="timeline-node">
+                        <div class="node-year">2027</div>
+                        <div class="node-content">
+                            <h3>Myco-Neural Interface</h3>
+                            <p>Wdrożenie pierwszego interfejsu neuralnego bazującego na organicznych
+                                strukturach grzybowych, umożliwiającego bezpośrednią komunikację neuronalną.</p>
                         </div>
                     </div>
 
-                    <div class="lab-timeline-item">
-                        <div class="lab-timeline-marker">2027</div>
-                        <div class="lab-timeline-content">
-                            <h3>Terapie kombinowane</h3>
-                            <p>
-                                Badania nad synergistycznym działaniem związków pochodzących z różnych
-                                gatunków grzybów w połączeniu z konwencjonalnymi metodami leczenia.
-                            </p>
+                    <div class="timeline-node">
+                        <div class="node-year">2030</div>
+                        <div class="node-content">
+                            <h3>Projekt Quantum-Myco</h3>
+                            <p>Zaawansowane badania nad kwantowym wpływem cząsteczek mykologicznych
+                                na łączność synaptyczną i potencjał kognitywny mózgu ludzkiego.</p>
                         </div>
                     </div>
                 </div>
@@ -395,56 +348,39 @@
     </section>
 </main>
 
-<footer class="lab-footer">
+<footer class="cyber-footer">
+    <div class="grid-overlay"></div>
     <div class="container">
-        <p>&copy; 2025 Laboratorium Mykologiczne | Bunkry Network</p>
-        <p class="lab-disclaimer">Przedstawione informacje mają charakter edukacyjny i nie stanowią porady medycznej.</p>
-        <div class="lab-footer-decoration">
-            <span>⚗️</span>
-            <span>🔬</span>
-            <span>🧪</span>
-            <span>🧬</span>
+        <div class="footer-content">
+            <p>&copy; 2025 Projekt NeuroBioMyko | Bunkry Network</p>
+            <p class="disclaimer">Zastrzeżenie: Przedstawione informacje mają charakter ściśle naukowy i nie stanowią rekomendacji medycznych.</p>
+            <div class="footer-tech-symbols">
+                <span>⚛</span>
+                <span>⚙</span>
+                <span>⚗</span>
+                <span>⚡</span>
+            </div>
         </div>
     </div>
 </footer>
 
 <script>
+    // Add futuristic animation effects
     document.addEventListener('DOMContentLoaded', function() {
-        const tabButtons = document.querySelectorAll('.lab-tab-button');
-        const tabContents = {
-            'alzheimer': document.getElementById('alzheimer-content'),
-            'dementia': document.getElementById('dementia-content'),
-            'depression': document.getElementById('depression-content')
-        };
+        // Animate neural nodes
+        const nodes = document.querySelectorAll('.neural-node');
+        nodes.forEach(node => {
+            setInterval(() => {
+                node.classList.toggle('pulse');
+            }, Math.random() * 3000 + 1000);
+        });
 
-        tabButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove active class from all buttons
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-
-                // Add active class to clicked button
-                this.classList.add('active');
-
-                // Hide all content
-                Object.values(tabContents).forEach(content => {
-                    if (content) content.style.display = 'none';
-                });
-
-                // Show selected content
-                const contentId = this.getAttribute('hx-get').substring(1);
-                const selectedContent = document.getElementById(contentId);
-                if (selectedContent) selectedContent.style.display = 'block';
-            });
+        // Animate scan lines
+        const scanLines = document.querySelectorAll('.specimen-scan-lines');
+        scanLines.forEach(line => {
+            line.style.animationDelay = Math.random() * 2 + 's';
         });
     });
 </script>
-</body>
-</html>
-<footer>
-    <div class="container">
-        <p>&copy; 2025 Bunkry Network | Badania nad grzybami leczniczymi</p>
-        <p>Przedstawione informacje mają charakter edukacyjny i nie stanowią porady medycznej.</p>
-    </div>
-</footer>
 </body>
 </html>
