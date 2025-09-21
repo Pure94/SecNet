@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reishi | Projekt NeuroBioMyko</title>
+    <link rel="stylesheet" th:href="@{/css/badania.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="cyber-header">
+    <div class="scanner-line"></div>
+    <div class="container">
+        <div class="header-content">
+            <div class="logo-container">
+                <a th:href="@{/badania}"><img th:src="@{/images/badania/logo.png}" alt="Logo NeuroBioMyko" width="150"/></a>
+                <div class="logo-glow"></div>
+                <h1>Reishi</h1>
+            </div>
+            <p class="subtitle">Analiza związku ID: GAN-LUC-86Z</p>
+        </div>
+    </div>
+</header>
+<main class="container">
+    <section class="cyber-panel intro">
+        <div class="panel-header">
+            <div class="panel-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M12,2A10,10 0 0,1 22,12A10,10 0 0,1 12,22A10,10 0 0,1 2,12A10,10 0 0,1 12,2M12,4A8,8 0 0,0 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12A8,8 0 0,0 12,4M12,10.5A1.5,1.5 0 0,1 13.5,12A1.5,1.5 0 0,1 12,13.5A1.5,1.5 0 0,1 10.5,12A1.5,1.5 0 0,1 12,10.5M7.5,10.5A1.5,1.5 0 0,1 9,12A1.5,1.5 0 0,1 7.5,13.5A1.5,1.5 0 0,1 6,12A1.5,1.5 0 0,1 7.5,10.5M16.5,10.5A1.5,1.5 0 0,1 18,12A1.5,1.5 0 0,1 16.5,13.5A1.5,1.5 0 0,1 15,12A1.5,1.5 0 0,1 16.5,10.5Z"></path></svg>
+            </div>
+            <h2>Szczegółowa analiza</h2>
+        </div>
+        <div class="panel-content">
+            <div class="specimen-page-content">
+                <div class="specimen-image-full">
+                    <img th:src="@{/images/badania/raishi.png}" alt="Reishi" class="hologram-effect"/>
+                    <div class="specimen-scan-lines"></div>
+                </div>
+                <div class="specimen-page-text">
+                    <h3>Reishi (Ganoderma lucidum)</h3>
+                    <p>
+                        Ganoderma lucidum, znana jako "grzyb nieśmiertelności", jest centralnym elementem naszych badań nad neuroprotekcją. Kompleks **triterpenoidów** i **polisacharydów** wykazuje silne działanie przeciwzapalne i antyoksydacyjne, chroniąc neurony przed stresem oksydacyjnym.
+                    </p>
+                    <p>
+                        Nasze protokoły kliniczne wykazały stabilizację barier krew-mózg oraz redukcję mikrogliowej aktywacji o <strong>72%</strong>, co jest kluczowe w prewencji chorób neurodegeneracyjnych. Dane wskazują, że Reishi może działać jako naturalny adaptogen, wspierając układ nerwowy w warunkach podwyższonego stresu.
+                    </p>
+                    <div class="data-timeline">
+                        <div class="timeline-marker">
+                            <div class="marker-dot"></div>
+                            <div class="marker-label">Faza I</div>
+                            <div class="marker-value">Ekstrakcja triterpenoidów</div>
+                        </div>
+                        <div class="timeline-marker">
+                            <div class="marker-dot"></div>
+                            <div class="marker-label">Faza II</div>
+                            <div class="marker-value">Stabilizacja barier: +65%</div>
+                        </div>
+                        <div class="timeline-marker">
+                            <div class="marker-dot"></div>
+                            <div class="marker-label">Faza III</div>
+                            <div class="marker-value">Redukcja stanów zapalnych: -72%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a th:href="@{/badania}" class="back-button">Powrót do menu głównego</a>
+        </div>
+    </section>
+</main>
+<footer class="cyber-footer">
+    <div class="container"><p>&copy; 2025 Projekt NeuroBioMyko | Bunkry Network</p></div>
+</footer>
+</body>
+</html>

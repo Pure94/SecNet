@@ -17,4 +17,19 @@ public class BadaniaController {
     public String getArchivumPage() {
         return "badania/archivum";
     }
+
+    @GetMapping("/soplówka")
+    public String getSoplowkaPage() {
+        return "badania/soplówka";
+    }
+
+    @GetMapping("/reishi")
+    public String getReishiPage() {
+        return "badania/reishi";
+    }
+
+    @GetMapping("/psylocybina")
+    public String getPsylocybinaPage() {
+        return "badania/psylocybina";
+    }
 }
