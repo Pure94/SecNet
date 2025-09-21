@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dostęp Zastrzeżony</title>
+    <link rel="stylesheet" th:href="@{/css/badania.css}">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="login-container">
+    <div class="cyber-panel login-panel">
+        <div class="warning-message">
+            <h2>Dostęp zastrzeżony</h2>
+            <p>
+                To jest logowanie do <strong>Wewnętrznej Sieci Bezpieczeństwa Apokaliptycznego</strong>.
+                System monitoruje wszystkie próby dostępu. Nieautoryzowane wejście jest
+                surowo zabronione i będzie traktowane jako akt sabotażu.
+                <br><br>
+                Zgodnie z protokołem S-04-22, wszelkie próby naruszenia protokołów bezpieczeństwa są
+                natychmiastowo raportowane do Naczelnego Sztabu Obrony.
+            </p>
+        </div>
+        <div th:if="${loginError}" class="warning-message" style="margin-bottom: 20px;">
+            <p th:text="${loginError}"></p>
+        </div>
+        <form class="login-form" method="post" action="/login">
+            <div class="login-form-section">
+                <input type="text" id="username" name="username" placeholder="Nazwa użytkownika" required>
+                <input type="password" id="password" name="password" placeholder="Hasło dostępu" required>
+            </div>
+            <button type="submit" class="login-button">Autoryzuj dostęp</button>
+        </form>
+    </div>
+
+    <div class="console-container" id="consoleContainer">
+        <pre class="console-output" id="consoleOutput">
+SYSTEM: Oczekiwanie na połączenie...
+</pre>
+        <div class="console-input-line">
+            <span class="console-prompt">&gt; </span><input type="text" class="console-input" id="consoleInput">
+        </div>
+    </div>
+</div>
+
+<button id="toggleConsoleButton" class="toggle-console-button">Ujawnij konsolę</button>
+
+<script th:src="@{/js/console.js}"></script>
+
+</body>
+</html>
