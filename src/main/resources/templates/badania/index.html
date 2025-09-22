@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projekt NeuroBioMyko | Bunkry Network</title>
+    <title>Projekt NeuroBioMyko | Network</title>
     <link rel="stylesheet" th:href="@{/css/badania.css}">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/htmx.org@1.9.10" integrity="sha384-D1Kt99CQMDuVetoL1lrYwg5t+9QdHe7NLX/SoJYkXDFfX37iInKRy5xLSi8nO7UC" crossorigin="anonymous"></script>
@@ -67,7 +67,11 @@
             <h2>Aktualności</h2>
         </div>
         <div class="panel-content">
-            <p>Wkrótce</p>
+            <div class="news-item">
+                <span class="news-date">22.09.2025</span>
+                <h3>Start rejestracji kandydatów i uruchomienie platformy badawczej</h3>
+                <p>Z radością informujemy o oficjalnym rozpoczęciu procesu rekrutacji uczestników do dalszych faz badań klinicznych Projektu NeuroBioMyko. Jednocześnie uruchomiliśmy dedykowaną platformę, która umożliwi monitorowanie postępów i dostęp do najnowszych protokołów badawczych. Wszystkich zainteresowanych prosimy o kontakt poprzez oficjalne kanały komunikacji.</p>
+            </div>
         </div>
     </section>
 
@@ -87,10 +91,10 @@
                     <div class="image-overlay"></div>
                 </div>
                 <div class="researcher-info">
-                    <h3>Kamil Wielkogłwacki</h3>
+                    <h3>Kamil Wielkogłowacki</h3>
                     <p class="researcher-title">Badacz | Neurobiolog</p>
                     <p class="researcher-bio">
-                        Dr Kamil Wielkogłwacki to wybitny naukowiec w dziedzinie neurobiologii i mykologii eksperymentalnej.
+                        Dr Kamil Wielkogłwoacki to wybitny naukowiec w dziedzinie neurobiologii i mykologii eksperymentalnej.
                         Jego pionierskie badania nad wpływem związków pochodzenia grzybowego na plastyczność synaptyczną
                         otworzyły nowe horyzonty w leczeniu chorób neurodegeneracyjnych. Prowadzi zespół, który dąży do
                         zrozumienia i wykorzystania potencjału bioaktywnych molekuł do regeneracji tkanki nerwowej.
@@ -148,84 +152,85 @@
 
         <div class="panel-content">
             <div class="specimen-grid">
-                <div class="specimen-card" >
-                    <a href="/badania/soplówka" class="specimen-link">
+                <a href="/badania/soplówka" class="specimen-link">
+                    <div class="specimen-card">
                         <div class="specimen-image">
                             <img th:src="@{/images/badania/lionsmane.png}" alt="Soplówka jeżowata" class="hologram-effect"/>
                             <div class="specimen-scan-lines"></div>
                         </div>
-                    </a>
-                    <div class="specimen-data">
-                        <h3>Soplówka jeżowata</h3>
-                        <div class="specimen-id">ID: HER-ERN-42X</div>
-                        <div class="specimen-latin">Hericium erinaceus</div>
-                        <p>
-                            Wyizolowane neurotrofiny stymulują regenerację synaps i aksodendryty.
-                            Nasze testy potwierdzają wzrost poziomu NGF o 287% w obszarze hipokampa.
-                        </p>
-                        <div class="specimen-properties">
-                            <span class="property">Neurogeneza</span>
-                            <span class="property">Regeneracja</span>
-                            <span class="property">Anti-apoptoza</span>
+                        <div class="specimen-data">
+                            <h3>Soplówka jeżowata</h3>
+                            <div class="specimen-id">ID: HER-ERN-42X</div>
+                            <div class="specimen-latin">Hericium erinaceus</div>
+                            <p>
+                                Wyizolowane neurotrofiny stymulują regenerację synaps i aksodendryty.
+                                Nasze testy potwierdzają wzrost poziomu NGF o 287% w obszarze hipokampa.
+                            </p>
+                            <div class="specimen-properties">
+                                <span class="property">Neurogeneza</span>
+                                <span class="property">Regeneracja</span>
+                                <span class="property">Anti-apoptoza</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="specimen-card">
-                    <a href="/badania/reishi" class="specimen-link">
+                <a href="/badania/reishi" class="specimen-link">
+                    <div class="specimen-card">
                         <div class="specimen-image">
                             <img th:src="@{/images/badania/raishi.png}" alt="reishi" class="hologram-effect"/>
                             <div class="specimen-scan-lines"></div>
                         </div>
-                    </a>
-                    <div class="specimen-data">
-                        <h3>Reishi</h3>
-                        <div class="specimen-id">ID: GAN-LUC-86Z</div>
-                        <div class="specimen-latin">Ganoderma lucidum</div>
-                        <p>
-                            Triterpenoidy i beta-glukany wykazują silne działanie neuroprotekcyjne.
-                            Zarejestrowano 72% redukcję stanów zapalnych w obszarach korowych mózgu.
-                        </p>
-                        <div class="specimen-properties">
-                            <span class="property">Immunomodulacja</span>
-                            <span class="property">Adaptogeneza</span>
-                            <span class="property">Antyoksydacja</span>
+                        <div class="specimen-data">
+                            <h3>Reishi</h3>
+                            <div class="specimen-id">ID: GAN-LUC-86Z</div>
+                            <div class="specimen-latin">Ganoderma lucidum</div>
+                            <p>
+                                Triterpenoidy i beta-glukany wykazują silne działanie neuroprotekcyjne.
+                                Zarejestrowano 72% redukcję stanów zapalnych w obszarach korowych mózgu.
+                            </p>
+                            <div class="specimen-properties">
+                                <span class="property">Immunomodulacja</span>
+                                <span class="property">Adaptogeneza</span>
+                                <span class="property">Antyoksydacja</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
 
-                <div class="specimen-card">
-                    <a href="/badania/psylocybina" class="specimen-link">
+                <a href="/badania/psylocybina" class="specimen-link">
+                    <div class="specimen-card">
                         <div class="specimen-image">
                             <img th:src="@{/images/badania/psychodelic.png}" alt="psylocybina" class="hologram-effect"/>
                             <div class="specimen-scan-lines"></div>
                         </div>
-                    </a>
-                    <div class="specimen-data">
-                        <h3>Psylocybina</h3>
-                        <div class="specimen-id">ID: PSI-CUB-19Y</div>
-                        <div class="specimen-latin">Psilocybe cubensis</div>
-                        <p>
-                            Mikrodozowanie generuje zwiększoną neuroplastyczność i modulację receptorów
-                            serotoninowych 5-HT2A. Skany mózgu wykazują znaczące wzmocnienie połączeń między DMN i TPN.
-                        </p>
-                        <div class="specimen-properties">
-                            <span class="property">Neuroplastyczność</span>
-                            <span class="property">Modulacja</span>
-                            <span class="property">Konektomika</span>
+                        <div class="specimen-data">
+                            <h3>Psylocybina</h3>
+                            <div class="specimen-id">ID: PSI-CUB-19Y</div>
+                            <div class="specimen-latin">Psilocybe cubensis</div>
+                            <p>
+                                Mikrodozowanie generuje zwiększoną neuroplastyczność i modulację receptorów
+                                serotoninowych 5-HT2A. Skany mózgu wykazują znaczące wzmocnienie połączeń między DMN i TPN.
+                            </p>
+                            <div class="specimen-properties">
+                                <span class="property">Neuroplastyczność</span>
+                                <span class="property">Modulacja</span>
+                                <span class="property">Konektomika</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="specimen-card">
-                    <a href="/badania/archivum" class="specimen-link">
+                </a>
+
+                <a href="/badania/archivum" class="specimen-link">
+                    <div class="specimen-card corrupted-card">
                         <div class="specimen-image">
                             <img th:src="@{/images/badania/ophiocordyceps.png}" alt="Ophiocordyceps" class="hologram-effect"/>
                             <div class="specimen-scan-lines"></div>
                         </div>
                         <div class="specimen-data">
-                            <h3 data-text="Ophiocordyceps">Ophiocordyceps</h3>
-                            <div class="specimen-id">ID: OPH-UNI-01X</div>
-                            <div class="specimen-latin">Ophiocordyceps unilateralis</div>
+                            <h3><span class="glitch-text" data-text="Ophiocordyceps">Ophiocordyceps</span></h3>
+                            <div class="specimen-id glitch-text">ID: OPH-UNI-01X</div>
+                            <div class="specimen-latin glitch-text">Ophiocordyceps unilateralis</div>
                             <p>
                                 Gatunek ten wykazuje zdolność do przejmowania kontroli nad układem nerwowym gospodarza.
                                 Badania nad tym mechanizmem zostały wstrzymane. Dostęp do dalszych danych jest ściśle tajny.
@@ -236,8 +241,8 @@
                                 <span class="property property-danger">NIEBEZPIECZEŃSTWO</span>
                             </div>
                         </div>
-                    </a>
-                </div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
@@ -377,7 +382,7 @@
     <div class="grid-overlay"></div>
     <div class="container">
         <div class="footer-content">
-            <p>&copy; 2025 Projekt NeuroBioMyko | Bunkry Network</p>
+            <p>&copy; 2025 Projekt NeuroBioMyko | Network</p>
             <p class="disclaimer">Zastrzeżenie: Przedstawione informacje mają charakter ściśle naukowy i nie stanowią rekomendacji medycznych.</p>
             <div class="footer-tech-symbols">
                 <span>⚛</span>

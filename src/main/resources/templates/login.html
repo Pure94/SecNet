@@ -15,7 +15,7 @@
         <div class="warning-message">
             <h2>Dostęp zastrzeżony</h2>
             <p>
-                To jest logowanie do <strong>Wewnętrznej Sieci Bezpieczeństwa Apokaliptycznego</strong>.
+                To jest logowanie do <strong>Wewnętrznej Sieci Bezpieczeństwa</strong>.
                 System monitoruje wszystkie próby dostępu. Nieautoryzowane wejście jest
                 surowo zabronione i będzie traktowane jako akt sabotażu.
                 <br><br>
@@ -26,12 +26,18 @@
         <div th:if="${loginError}" class="warning-message" style="margin-bottom: 20px;">
             <p th:text="${loginError}"></p>
         </div>
-        <form class="login-form" method="post" action="/login">
-            <div class="login-form-section">
-                <input type="text" id="username" name="username" placeholder="Nazwa użytkownika" required>
-                <input type="password" id="password" name="password" placeholder="Hasło dostępu" required>
+        <form class="login-form" method="post" th:action="@{/login}">
+            <div th:if="${param.error}" class="warning-message">
+                <p>Nieprawidłowa nazwa użytkownika lub hasło. Dostęp zastrzeżony.</p>
             </div>
-            <button type="submit" class="login-button">Autoryzuj dostęp</button>
+            <div th:if="${param.logout}" class="warning-message">
+                <p>Zostałeś wylogowany.</p>
+            </div>
+            <div class="login-form-section">
+                <input type="text" name="username" placeholder="Username" required>
+                <input type="password"  name="password" placeholder="Password" required>
+            </div>
+            <button type="submit" value="Log in" class="login-button">Autoryzuj dostęp</button>
         </form>
     </div>
 

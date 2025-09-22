@@ -1220,3 +1220,113 @@ ul li:before {
     height: 16px;
     top: -27px;
 }
+
+/* Styling for the classified card */
+.classified-card {
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #ff4d4d;
+    box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff4d4d;
+    animation: pulse-danger 2s infinite;
+}
+
+/* Red flickering animation for the border and glow */
+@keyframes pulse-danger {
+    0%, 100% { box-shadow: 0 0 10px #ff4d4d, 0 0 20px #ff4d4d; }
+    50% { box-shadow: 0 0 5px #ff4d4d, 0 0 10px #ff4d4d, 0 0 30px #ff4d4d; }
+}
+
+/* The glitchy, broken text effect */
+.glitch-text {
+    animation: glitch 1s infinite;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-shadow: 2px 2px #ff4d4d, -2px -2px #00f;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch 2s infinite linear alternate-reverse;
+}
+
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-5px, 5px);
+    }
+    40% {
+        transform: translate(-5px, -5px);
+    }
+    60% {
+        transform: translate(5px, 5px);
+    }
+    80% {
+        transform: translate(5px, -5px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* Flickering animation for the overlay */
+@keyframes flicker-overlay {
+    0%, 100% { opacity: 1; }
+    4% { opacity: 0.8; }
+    6% { opacity: 1; }
+    15% { opacity: 0.8; }
+    20% { opacity: 1; }
+    25% { opacity: 0.8; }
+    30% { opacity: 1; }
+}
+
+/* Styling for the close button */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 11;
+}
+
+.close-button:hover {
+    color: #ff4d4d;
+}
+
+/* Styles for the "corrupted" card */
+.corrupted-card {
+    filter: blur(0.5px) grayscale(50%);
+    opacity: 0.8;
+    animation: flicker-card 3s infinite;
+    transform: perspective(500px) rotateY(-5deg);
+    border: 2px solid #333;
+}
+
+/* Slightly distorts the text inside the card */
+.corrupted-card h3, .corrupted-card .specimen-id, .corrupted-card .specimen-latin, .corrupted-card p, .corrupted-card .specimen-properties {
+    text-shadow: 1px 1px 2px rgba(255, 0, 0, 0.4), -1px -1px 2px rgba(0, 0, 255, 0.4);
+    opacity: 0.8;
+}
+
+/* Glitch animation for text */
+@keyframes flicker-card {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 0.9;
+        transform: scale(1.0) perspective(500px) rotateY(-5deg);
+        filter: blur(0.5px) grayscale(50%);
+    }
+    20%, 24%, 55% {
+        opacity: 0.7;
+        transform: scale(1.01) perspective(500px) rotateY(-5deg) skewX(2deg);
+        filter: blur(1px) grayscale(70%);
+    }
+}

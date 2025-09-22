@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    <changeSet id="00" author="KamilS">
+        <comment>Tworzenie tabel dla uzytkownikow i rol przy uzyciu skryptu SQL</comment>
+        <sqlFile
+                path="db/changelog/sql/00-create-users-and-roles-tables.sql"
+                relativeToChangelogFile="false"
+                splitStatements="true"
+                stripComments="true"
+        />
+    </changeSet>
+
+    <changeSet id="01" author="KamilS">
+        <comment>Tworzenie tabel dla uzytkownikow i rol przy uzyciu skryptu SQL</comment>
+        <sqlFile
+                path="db/changelog/sql/01-insert-admin.sql"
+                relativeToChangelogFile="false"
+                splitStatements="true"
+                stripComments="true"
+        />
+    </changeSet>
+
+    <changeSet id="02" author="KamilS">
+        <comment>Tworzenie tabel channels i user_channels</comment>
+        <sqlFile
+                path="db/changelog/sql/02-create-channels-and-user-channels-tables.sql"
+                relativeToChangelogFile="false"
+                splitStatements="true"
+                stripComments="true"
+        />
+    </changeSet>
+
+    <changeSet id="03" author="KamilS">
+        <comment>Tworzenie tabeli konwersacji</comment>
+        <sqlFile
+                path="db/changelog/sql/03-create-conversations-table.sql"
+                relativeToChangelogFile="false"
+                splitStatements="true"
+                stripComments="true"
+        />
+    </changeSet>
+</databaseChangeLog>

@@ -18,6 +18,11 @@ public class BadaniaController {
         return "badania/archivum";
     }
 
+    @GetMapping("/archiwum")
+    public String getArchiwumPage() {
+        return "badania/archiwum";
+    }
+
     @GetMapping("/soplówka")
     public String getSoplowkaPage() {
         return "badania/soplówka";
