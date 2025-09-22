@@ -104,8 +104,8 @@
                             <tr>
                                 <th>Nazwa kanału</th>
                                 <th>System Prompt</th>
-                                <th>Użytkownicy</th>
                                 <th>Akcje</th>
+                                <th>Użytkownicy</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -126,19 +126,18 @@
                                     </button>
                                 </td>
                                 <td>
-                                    <button
-                                            class="cyber-button-small manage-users-btn"
-                                            th:data-channel-id="${channel.id}"
-                                            th:data-channel-name="${channel.name}">
-                                        Zarządzaj
-                                    </button>
-                                </td>
-                                <td>
                                     <form th:action="@{/admin-panel/delete-channel}" method="post">
                                         <input type="hidden" name="channelId" th:value="${channel.id}">
                                         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
                                         <button type="submit" class="cyber-button-small" style="background-color: var(--danger-red); box-shadow: 0 0 5px var(--danger-red);">Usuń</button>
                                     </form>
+                                </td>
+                                <td>
+                                    <button
+                                            class="cyber-button-small manage-users-btn"
+                                            th:data-channel-id="${channel.id}">
+                                        Zarządzaj
+                                    </button>
                                 </td>
                             </tr>
                             </tbody>
@@ -171,18 +170,21 @@
     <div class="notes-modal">
         <h3 id="modal-title">Zarządzanie użytkownikami dla kanału: <span id="channel-name-in-modal"></span></h3>
         <div class="modal-content">
-            <form th:action="@{/admin-panel/assign-users-to-channel}" method="post" id="manage-users-form">
+            <form id="manage-users-form" method="post">
                 <input type="hidden" name="channelId" id="manage-channel-id" />
-                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" id="manage-users-csrf" />
                 <div id="users-list-container">
                 </div>
                 <div class="modal-buttons">
                     <button type="button" class="cyber-button-small" id="cancel-manage-btn">Anuluj</button>
-                    <button type="submit" class="cyber-button-small" style="background-color: var(--neon-blue);">Zapisz</button>
+                    <button type="submit" form="manage-users-form" class="cyber-button-small" style="background-color: var(--neon-blue);">Zapisz</button>
                 </div>
             </form>
         </div>
     </div>
+</div>
+<div th:if="${errorMessage}" class="toast-error" id="error-toast">
+    <span th:text="${errorMessage}"></span>
 </div>
 
 <script id="channels-data" type="application/json" th:utext="${channelsJson}"></script>

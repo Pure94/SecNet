@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Map;
@@ -108,8 +109,22 @@ public class AdminController {
     }
 
     @PostMapping("/reset-user-limit")
-    public String resetUserLimit(@RequestParam UUID channelId, @RequestParam UUID userId) {
-        adminService.resetUserLimit(channelId, userId);
+    public String resetUserLimit(@RequestParam UUID channelId, @RequestParam UUID userId, RedirectAttributes redirectAttributes) {
+        try {
+            adminService.resetUserLimit(channelId, userId);
+        } catch (IllegalArgumentException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+        }
+        return "redirect:/admin-panel";
+    }
+
+    @PostMapping("/update-user-limit")
+    public String updateUserLimit(@RequestParam UUID channelId, @RequestParam UUID userId, @RequestParam Integer newLimit, RedirectAttributes redirectAttributes) {
+        try {
+            adminService.updateUserLimit(channelId, userId, newLimit);
+        } catch (IllegalArgumentException e) {
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+        }
         return "redirect:/admin-panel";
     }
 }

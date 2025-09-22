@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -147,6 +148,33 @@ public class AdminService {
             }
         }
     }
+
+    @Transactional
+    public void updateUserLimit(UUID channelId, UUID userId, Integer newLimit) {
+        UserChannelKey userChannelKey = new UserChannelKey();
+        userChannelKey.setChannel(channelId);
+        userChannelKey.setUser(userId);
+
+        Optional<UserChannel> optionalUserChannel = userChannelRepository.findById(userChannelKey);
+
+        if (optionalUserChannel.isPresent()) {
+            UserChannel userChannel = optionalUserChannel.get();
+            userChannel.setRemainingLimit(newLimit);
+            userChannelRepository.save(userChannel);
+        } else {
+            User user = userRepository.findById(userId)
+                    .orElseThrow(() -> new IllegalArgumentException("User not found."));
+            Channel channel = channelRepository.findById(channelId)
+                    .orElseThrow(() -> new IllegalArgumentException("Channel not found."));
+            UserChannel newUserChannel = new UserChannel();
+            newUserChannel.setId(userChannelKey);
+            newUserChannel.setUser(user);
+            newUserChannel.setChannel(channel);
+            newUserChannel.setRemainingLimit(newLimit);
+            userChannelRepository.save(newUserChannel);
+        }
+    }
+
 
     @Transactional
     public void resetUserLimit(UUID channelId, UUID userId) {
