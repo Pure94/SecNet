@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import com.larpologic.secretnetwork.security.entity.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "user_channels")
@@ -22,6 +23,7 @@ public class UserChannel {
     @ManyToOne
     @MapsId("channel")
     @JoinColumn(name = "channel_id")
+    @JsonIgnore
     private Channel channel;
 
     @Column(name = "remaining_limit")

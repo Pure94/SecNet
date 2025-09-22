@@ -3,6 +3,8 @@ package com.larpologic.secretnetwork.conversation;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Set;
 import java.util.UUID;
@@ -11,6 +13,7 @@ import java.util.UUID;
 @Table(name = "channels")
 @Getter
 @Setter
+@JsonIgnoreProperties({"conversations"})
 public class Channel {
 
     @Id

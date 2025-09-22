@@ -8,7 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/admin.css}">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<body class="archivum-body" th:data-all-users-json="${usersJson}">
+<body class="archivum-body">
 
 <main class="container archivum-content">
     <section class="cyber-panel">
@@ -185,10 +185,9 @@
     </div>
 </div>
 
-<script th:inline="javascript">
-    const channelsData = [[${channelsJson}]];
-    const allUsersData = [[${usersJson}]];
-</script>
+<script id="channels-data" type="application/json" th:utext="${channelsJson}"></script>
+<script id="users-data" type="application/json" th:utext="${usersJson}"></script>
+
 <script th:src="@{/js/admin.js}"></script>
 </body>
 </html>

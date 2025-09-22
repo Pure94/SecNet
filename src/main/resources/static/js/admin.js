@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Logika dla edycji system prompt
+    const channelsData = JSON.parse(document.getElementById('channels-data').textContent);
+    const allUsersData = JSON.parse(document.getElementById('users-data').textContent);
+
     const editModalOverlay = document.getElementById('edit-modal-overlay');
     const systemPromptTextarea = document.getElementById('edit-system-prompt');
     const channelIdInput = document.getElementById('edit-channel-id');
@@ -9,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     editPromptBtns.forEach(button => {
         button.addEventListener('click', () => {
             const channelId = button.getAttribute('data-channel-id');
-            const channel = channelsData.find(c => c.id === channelId);
+            const channel = channelsData.find(c => c.id.toString() === channelId.toString());
 
             if (channel) {
                 channelIdInput.value = channel.id;
@@ -29,7 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Logika dla zarządzania użytkownikami
     const manageUsersBtn = document.querySelectorAll('.manage-users-btn');
     const manageUsersModal = document.getElementById('manage-users-modal-overlay');
     const manageChannelIdInput = document.getElementById('manage-channel-id');
@@ -40,8 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     manageUsersBtn.forEach(button => {
         button.addEventListener('click', () => {
             const channelId = button.getAttribute('data-channel-id');
-            const channelName = button.getAttribute('data-channel-name');
-            const channel = channelsData.find(c => c.id === channelId);
+            const channel = channelsData.find(c => c.id.toString() === channelId.toString());
 
             if (channel) {
                 manageChannelIdInput.value = channel.id;
@@ -50,8 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 manageUsersListContainer.innerHTML = '';
 
                 allUsersData.forEach(user => {
-                    const isAssigned = channel.userChannels.some(au => au.user.uuid === user.uuid);
-                    const assignedUser = isAssigned ? channel.userChannels.find(au => au.user.uuid === user.uuid) : null;
+                    // Sprawdź, czy channel.userChannels istnieje i jest tablicą, zanim użyjesz .some()
+                    const assignedUsersInChannel = channel.userChannels || [];
+                    const isAssigned = assignedUsersInChannel.some(au => au.user.uuid.toString() === user.uuid.toString());
+                    const assignedUser = isAssigned ? assignedUsersInChannel.find(au => au.user.uuid.toString() === user.uuid.toString()) : null;
                     const limit = assignedUser ? assignedUser.remainingLimit : 100;
 
                     const userRow = document.createElement('div');
@@ -81,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Obsługa zamknięcia okien modalnych za pomocą klawisza 'Escape'
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') {
             editModalOverlay.style.display = 'none';

@@ -1,5 +1,6 @@
 package com.larpologic.secretnetwork.conversation;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,10 +21,12 @@ public class Conversation {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnore
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "channel_id", nullable = false)
+    @JsonIgnore
     private Channel channel;
 
     @Column(name = "user_message", columnDefinition = "TEXT", nullable = false)
