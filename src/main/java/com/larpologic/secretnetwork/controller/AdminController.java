@@ -2,10 +2,10 @@ package com.larpologic.secretnetwork.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.larpologic.secretnetwork.conversation.Channel;
+import com.larpologic.secretnetwork.conversation.dto.ChannelDto;
+import com.larpologic.secretnetwork.conversation.dto.RoleDto;
+import com.larpologic.secretnetwork.conversation.dto.UserDto;
 import com.larpologic.secretnetwork.security.AdminService;
-import com.larpologic.secretnetwork.security.entity.Role;
-import com.larpologic.secretnetwork.security.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,9 +35,9 @@ public class AdminController {
 
     @GetMapping
     public String showAdminPanel(Model model) throws JsonProcessingException {
-        List<User> users = adminService.getAllUsers();
-        List<Role> roles = adminService.getAllRoles();
-        List<Channel> channels = adminService.getAllChannels();
+        List<UserDto> users = adminService.getAllUsersAsDto();
+        List<RoleDto> roles = adminService.getAllRolesAsDto();
+        List<ChannelDto> channels = adminService.getAllChannelsAsDto();
         model.addAttribute("users", users);
         model.addAttribute("roles", roles);
         model.addAttribute("channels", channels);

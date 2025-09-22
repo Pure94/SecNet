@@ -1,6 +1,10 @@
 package com.larpologic.secretnetwork.security;
 
 import com.larpologic.secretnetwork.conversation.*;
+import com.larpologic.secretnetwork.conversation.dto.ChannelDto;
+import com.larpologic.secretnetwork.conversation.dto.RoleDto;
+import com.larpologic.secretnetwork.conversation.dto.UserChannelDto;
+import com.larpologic.secretnetwork.conversation.dto.UserDto;
 import com.larpologic.secretnetwork.security.entity.Role;
 import com.larpologic.secretnetwork.security.entity.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -186,6 +190,60 @@ public class AdminService {
 
         userChannel.setRemainingLimit(100);
         userChannelRepository.save(userChannel);
+    }
+
+    // Konwersja na DTO
+    public List<UserDto> getAllUsersAsDto() {
+        return userRepository.findAll().stream()
+                .map(this::convertToUserDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<RoleDto> getAllRolesAsDto() {
+        return roleRepository.findAll().stream()
+                .map(this::convertToRoleDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<ChannelDto> getAllChannelsAsDto() {
+        return channelRepository.findAll().stream()
+                .map(this::convertToChannelDto)
+                .collect(Collectors.toList());
+    }
+
+    private UserDto convertToUserDto(User user) {
+        UserDto userDto = new UserDto();
+        userDto.setUuid(user.getUuid());
+        userDto.setUsername(user.getUsername());
+        userDto.setRoles(user.getRoles().stream()
+                .map(this::convertToRoleDto)
+                .collect(Collectors.toSet()));
+        return userDto;
+    }
+
+    private RoleDto convertToRoleDto(Role role) {
+        RoleDto roleDto = new RoleDto();
+        roleDto.setUuid(role.getUuid());
+        roleDto.setName(role.getName());
+        return roleDto;
+    }
+
+    private ChannelDto convertToChannelDto(Channel channel) {
+        ChannelDto channelDto = new ChannelDto();
+        channelDto.setId(channel.getId());
+        channelDto.setName(channel.getName());
+        channelDto.setSystemPrompt(channel.getSystemPrompt());
+        channelDto.setUserChannels(channel.getUserChannels().stream()
+                .map(this::convertToUserChannelDto)
+                .collect(Collectors.toSet()));
+        return channelDto;
+    }
+
+    private UserChannelDto convertToUserChannelDto(UserChannel userChannel) {
+        UserChannelDto userChannelDto = new UserChannelDto();
+        userChannelDto.setUser(convertToUserDto(userChannel.getUser()));
+        userChannelDto.setRemainingLimit(userChannel.getRemainingLimit());
+        return userChannelDto;
     }
 
     public List<User> getAllUsers() {
