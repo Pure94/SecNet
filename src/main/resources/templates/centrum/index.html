@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strefa Kwarantanny | Projekt NeuroBioMyko</title>
+    <link rel="stylesheet" th:href="@{/css/centrum.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body class="terminal-body">
+
+<main class="container">
+    <section class="terminal-panel">
+        <div class="terminal-header">
+            <h1><span class="glitch-text" data-text="OSTRZEŻENIE">OSTRZEŻENIE</span></h1>
+            <h2><span class="glitch-text" data-text="NARUSZENIE PROTOKOŁU KWARANTANNY B-13">NARUSZENIE PROTOKOŁU KWARANTANNY B-13</span></h2>
+            <p>
+                Wszystkie systemy zewnętrzne przełączone na tryb awaryjny.
+                Systemy wewnętrzne zostały przejęte przez jednostkę wojskową HADES.
+            </p>
+        </div>
+
+        <div class="terminal-log-panel">
+            <span class="log-line log-system">[09:01:23] SYSTEM: Rozpoczęcie procedury kwarantanny B-13.</span>
+            <span class="log-line log-hades">[09:01:45] PROTOKÓŁ HADES: Wstrzymanie wszystkich działań kwarantanny.</span>
+            <span class="log-line log-hades">[09:01:50] PROTOKÓŁ HADES: Dezaktywacja systemu zabezpieczeń w Sektorze D.</span>
+            <span class="log-line log-hades">[09:01:55] PROTOKÓŁ HADES: Aktywacja opóźnienia ucieczki obiektu D-03.</span>
+            <span class="log-line log-hades">[09:02:10] PROTOKÓŁ HADES: Status: Wyciek ZAPLANOWANY. Cel: analiza behawioralna w warunkach polowych.</span>
+            <span class="log-line log-system">[09:02:15] SYSTEM: Komunikat: "Projekt Chimera zmienia cel z badawczego na militarny."</span>
+            <span class="log-line log-hades">[09:02:30] PROTOKÓŁ HADES: Blokada dostępu do wentylacji dla personelu badawczego.</span>
+            <span class="log-line log-hades">[09:02:40] PROTOKÓŁ HADES: Uruchomienie ścieżki ucieczki dla D-03.</span>
+            <span class="log-line log-system">[09:02:45] SYSTEM: Komunikat: "Dr Kamil Wielkogłowacki pozostawiony w laboratorium."</span>
+            <span class="log-line log-hades">[09:03:00] PROTOKÓŁ HADES: Analiza mutacji D-04 zakończona sukcesem.</span>
+            <span class="log-line log-hades">[09:03:10] PROTOKÓŁ HADES: Ostateczne przejęcie kontroli nad obiektem.</span>
+            <span class="log-line log-hades">[09:03:20] PROTOKÓŁ HADES: Cel: zabezpieczenie żywych próbek.</span>
+            <span class="log-line log-system">[09:03:30] SYSTEM: OSTRZEŻENIE: Cała sieć badawcza jest teraz pod kontrolą wojskową.</span>
+        </div>
+
+        <div class="chat-panel">
+            <div class="chat-header">
+                <h3>HADES DEEP NETWORK</h3>
+            </div>
+            <div class="chat-output" id="chatOutput">
+                SYSTEM: Połączono z HADES Deep Network. Oczekiwanie na komendy.
+            </div>
+            <form id="chatForm" onsubmit="return false;">
+                <div class="chat-input-line">
+                    <span class="chat-prompt">&gt; </span>
+                    <input type="text" class="chat-input" id="chatInput">
+                </div>
+            </form>
+        </div>
+
+        <div class="media-section">
+            <h3>DZIENNIK GŁOSOWY - ODZYSKANE PLIKI</h3>
+            <p>Odzyskano tylko 3 pliki z 17.</p>
+            <div class="audio-list">
+                <div class="media-item">
+                    <div class="log-title">LOG #01 | DATA: 20.07.2025</div>
+                    <audio controls src="#" th:src="@{/audio/raport_kamil1.mp3}"></audio>
+                </div>
+                <div class="media-item">
+                    <div class="log-title">LOG #02 | DATA: 21.07.2025</div>
+                    <audio controls src="#" th:src="@{/audio/raport_kamil2.mp3}"></audio>
+                </div>
+                <div class="media-item">
+                    <div class="log-title">LOG #03 | DATA: 22.07.2025</div>
+                    <audio controls src="#" th:src="@{/audio/raport_kamil3.mp3}"></audio>
+                </div>
+            </div>
+        </div>
+
+        <div class="media-section">
+            <h3>RAPORT SPECJALNY - GRZYBICKI</h3>
+            <p>Nagranie wentylacyjne - 23.07.2025</p>
+            <div class="media-item">
+                <div class="video-player">
+                    <video controls poster="#" th:poster="@{/images/centrum/glowacki.png}">
+                        <source th:src="@{/video/Mutant_w_opuszczonym_laboratorium.mp4}" type="video/mp4">
+                    </video>
+                    <p>
+                        <span style="color: var(--text-red);">ZAREJESTROWANO PRZEZ WENTYLACJĘ B-13: </span><br>
+                        Ostatnie znane nagranie Doktora Wielkogłowackiego przed przejęciem.
+                    </p>
+                </div>
+            </div>
+            <div class="media-item">
+                <audio controls src="#" th:src="@{/audio/raport_rafal.mp3}"></audio>
+            </div>
+        </div>
+
+    </section>
+</main>
+
+<footer class="cyber-footer">
+    <div class="container">
+        <div class="footer-content">
+            <p>&copy; 2025 Projekt NeuroBioMyko | Network</p>
+        </div>
+    </div>
+</footer>
+
+<script th:src="@{/js/hades-chat.js}"></script>
+<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" id="csrfToken" />
+
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.larpologic.secretnetwork.conversation;
+package com.larpologic.secretnetwork.conversation.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

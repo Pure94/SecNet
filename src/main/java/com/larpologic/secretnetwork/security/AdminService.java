@@ -1,10 +1,15 @@
 package com.larpologic.secretnetwork.security;
 
-import com.larpologic.secretnetwork.conversation.*;
 import com.larpologic.secretnetwork.conversation.dto.ChannelDto;
 import com.larpologic.secretnetwork.conversation.dto.RoleDto;
 import com.larpologic.secretnetwork.conversation.dto.UserChannelDto;
 import com.larpologic.secretnetwork.conversation.dto.UserDto;
+import com.larpologic.secretnetwork.conversation.entity.Channel;
+import com.larpologic.secretnetwork.conversation.entity.UserChannel;
+import com.larpologic.secretnetwork.conversation.entity.UserChannelKey;
+import com.larpologic.secretnetwork.conversation.repository.ChannelRepository;
+import com.larpologic.secretnetwork.conversation.repository.ConversationRepository;
+import com.larpologic.secretnetwork.conversation.repository.UserChannelRepository;
 import com.larpologic.secretnetwork.security.entity.Role;
 import com.larpologic.secretnetwork.security.entity.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -28,13 +33,15 @@ public class AdminService {
     private final ChannelRepository channelRepository;
     private final UserChannelRepository userChannelRepository;
     private final PasswordEncoder passwordEncoder;
+    private final ConversationRepository conversationRepository;
 
-    public AdminService(UserRepository userRepository, RoleRepository roleRepository, ChannelRepository channelRepository, UserChannelRepository userChannelRepository, PasswordEncoder passwordEncoder) {
+    public AdminService(UserRepository userRepository, RoleRepository roleRepository, ChannelRepository channelRepository, UserChannelRepository userChannelRepository, PasswordEncoder passwordEncoder, ConversationRepository conversationRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.channelRepository = channelRepository;
         this.userChannelRepository = userChannelRepository;
         this.passwordEncoder = passwordEncoder;
+        this.conversationRepository = conversationRepository;
     }
 
     @Transactional
@@ -244,6 +251,12 @@ public class AdminService {
         userChannelDto.setUser(convertToUserDto(userChannel.getUser()));
         userChannelDto.setRemainingLimit(userChannel.getRemainingLimit());
         return userChannelDto;
+    }
+
+
+    @Transactional
+    public void clearChannelConversations(UUID channelId) {
+        conversationRepository.deleteByChannelId(channelId);
     }
 
     public List<User> getAllUsers() {

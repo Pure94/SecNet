@@ -1,12 +1,11 @@
 package com.larpologic.secretnetwork.security.entity;
 
-import com.larpologic.secretnetwork.conversation.Conversation;
-import com.larpologic.secretnetwork.conversation.UserChannel;
+import com.larpologic.secretnetwork.conversation.entity.Conversation;
+import com.larpologic.secretnetwork.conversation.entity.UserChannel;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Set;
 import java.util.UUID;

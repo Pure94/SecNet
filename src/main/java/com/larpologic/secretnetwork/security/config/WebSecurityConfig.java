@@ -25,11 +25,12 @@ public class WebSecurityConfig {
                 .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"))
                 .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/css/**", "/images/**", "/js/**").permitAll()
-                        .requestMatchers("/", "/login", "/badania", "/unauthorized").permitAll()
+                        .requestMatchers("/login", "/badania", "/unauthorized").permitAll()
                         .requestMatchers("/badania/**").permitAll()
                         .requestMatchers("/api/**").permitAll()
                         .requestMatchers("/admin-panel").hasRole("ADMIN")
                         .requestMatchers("/admin-panel/**").hasRole("ADMIN")
+                        .requestMatchers("/").hasRole("HADES")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

@@ -127,4 +127,10 @@ public class AdminController {
         }
         return "redirect:/admin-panel";
     }
+
+    @PostMapping("/clear-channel-conversations")
+    public String clearChannelConversations(@RequestParam UUID channelId) {
+        adminService.clearChannelConversations(channelId);
+        return "redirect:/admin-panel";
+    }
 }

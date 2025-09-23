@@ -26,6 +26,10 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
                 redirectUrl = "/admin-panel";
                 break;
             }
+            if (grantedAuthority.getAuthority().equals("ROLE_HADES")) {
+                redirectUrl = "/";
+                break;
+            }
         }
 
         response.sendRedirect(redirectUrl);

@@ -1,6 +1,8 @@
-package com.larpologic.secretnetwork.conversation;
+package com.larpologic.secretnetwork.conversation.repository;
 
+import com.larpologic.secretnetwork.conversation.entity.Conversation;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -15,4 +17,8 @@ public interface ConversationRepository extends JpaRepository<Conversation, UUID
             @Param("userId") UUID userId,
             @Param("channelId") UUID channelId
     );
+
+    @Modifying
+    @Query("DELETE FROM Conversation c WHERE c.channel.id = :channelId")
+    void deleteByChannelId(@Param("channelId") UUID channelId);
 }

@@ -3,6 +3,12 @@ package com.larpologic.secretnetwork.conversation;
 
 import com.larpologic.secretnetwork.chat.OpenRouterClient;
 import com.larpologic.secretnetwork.chat.OpenRouterRequest;
+import com.larpologic.secretnetwork.conversation.dto.MessageRequest;
+import com.larpologic.secretnetwork.conversation.dto.MessageResponse;
+import com.larpologic.secretnetwork.conversation.entity.*;
+import com.larpologic.secretnetwork.conversation.repository.ChannelRepository;
+import com.larpologic.secretnetwork.conversation.repository.ConversationRepository;
+import com.larpologic.secretnetwork.conversation.repository.UserChannelRepository;
 import com.larpologic.secretnetwork.security.UserRepository;
 import com.larpologic.secretnetwork.security.entity.User;
 import org.springframework.stereotype.Service;

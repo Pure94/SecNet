@@ -1,4 +1,4 @@
-package com.larpologic.secretnetwork.conversation;
+package com.larpologic.secretnetwork.conversation.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;

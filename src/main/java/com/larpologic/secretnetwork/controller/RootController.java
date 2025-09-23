@@ -8,7 +8,7 @@ public class RootController {
 
     @GetMapping("/")
     public String showLoginPage() {
-        return "badania/index";
+        return "centrum/index";
     }
 
     @GetMapping("/unauthorized")

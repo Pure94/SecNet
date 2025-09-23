@@ -1,4 +1,4 @@
-package com.larpologic.secretnetwork.conversation;
+package com.larpologic.secretnetwork.conversation.dto;
 
 import lombok.Getter;
 import lombok.Setter;

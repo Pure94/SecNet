@@ -106,6 +106,7 @@
                                 <th>System Prompt</th>
                                 <th>Akcje</th>
                                 <th>Użytkownicy</th>
+                                <th>Clear</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -138,6 +139,13 @@
                                             th:data-channel-id="${channel.id}">
                                         Zarządzaj
                                     </button>
+                                </td>
+                                <td>
+                                    <form th:action="@{/admin-panel/clear-channel-conversations}" method="post" onsubmit="return confirm('Czy na pewno chcesz wyczyścić historię konwersacji dla tego kanału?');">
+                                        <input type="hidden" name="channelId" th:value="${channel.id}">
+                                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                                        <button type="submit" class="cyber-button-small" style="background-color: var(--neon-purple); box-shadow: 0 0 5px var(--neon-purple);">Wyczyść konwersacje</button>
+                                    </form>
                                 </td>
                             </tr>
                             </tbody>
