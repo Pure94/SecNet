@@ -13,38 +13,40 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class WebSecurityConfig {
 
-    CustomLoginSuccessHandler customLoginSuccessHandler;
+    private final CustomLoginSuccessHandler customLoginSuccessHandler;
 
-    public WebSecurityConfig( CustomLoginSuccessHandler customLoginSuccessHandler) {
+    public WebSecurityConfig(CustomLoginSuccessHandler customLoginSuccessHandler) {
         this.customLoginSuccessHandler = customLoginSuccessHandler;
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests((requests) -> requests
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**"))
+                .authorizeHttpRequests(requests -> requests
                         .requestMatchers("/css/**", "/images/**", "/js/**").permitAll()
                         .requestMatchers("/", "/login", "/badania", "/unauthorized").permitAll()
                         .requestMatchers("/badania/**").permitAll()
+                        .requestMatchers("/api/**").permitAll()
                         .requestMatchers("/admin-panel").hasRole("ADMIN")
                         .requestMatchers("/admin-panel/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
-                .formLogin((form) -> form
+                .formLogin(form -> form
                         .loginPage("/login")
                         .successHandler(customLoginSuccessHandler)
                         .permitAll()
                 )
-                .logout((logout) -> logout
+                .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout")
                         .permitAll()
                 )
-                .rememberMe((rememberMe) -> rememberMe
+                .rememberMe(rememberMe -> rememberMe
                         .key("BUNKIER_NETWORK")
                         .tokenValiditySeconds(86400 * 1)
                 )
-                .exceptionHandling((exception) -> exception
+                .exceptionHandling(exception -> exception
                         .accessDeniedPage("/unauthorized")
                 );
 
