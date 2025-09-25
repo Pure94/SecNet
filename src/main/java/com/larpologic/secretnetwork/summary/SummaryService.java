@@ -38,11 +38,11 @@ public class SummaryService {
 
     private static final String SYSTEM_PROMPT =
             """
-            You are an expert summarizer.
-            our task is to provide a concise, clear, and accurate summary of the given conversation.
-            The summary should capture the main points, decisions, and action items. 
-            Do not include any personal opinions or interpretations.
-            The summary should be easy to read and understand for someone who has not read the full conversation.";
+        Jesteś ekspertem od podsumowywania.
+        Twoim zadaniem jest dostarczenie zwięzłego, jasnego i dokładnego podsumowania danej rozmowy.
+        Podsumowanie powinno zawierać główne punkty, decyzje i zadania do wykonania.
+        Nie należy włączać żadnych osobistych opinii ani interpretacji.
+        Podsumowanie powinno być łatwe do przeczytania i zrozumienia dla kogoś, kto nie czytał pełnej rozmowy.
             """;
 
     public void summarizeConversations() {
@@ -65,7 +65,7 @@ public class SummaryService {
             return;
         }
 
-        Summary lastSummary = summaryRepository.findByChannelIdAndUserId(channel.getId(), user.getUuid()).orElse(null);
+        Summary lastSummary = summaryRepository.findByChannelIdAndUserUuid(channel.getId(), user.getUuid()).orElse(null);
 
         if (lastSummary != null && lastSummary.getCreatedAt().isAfter(conversations.get(conversations.size() - 1).getCreatedAt().toLocalDateTime())) {
             log.info("No new messages to summarize for user '{}' in channel '{}'", user.getUsername(), channel.getName());
@@ -78,7 +78,7 @@ public class SummaryService {
             conversationText.append("Response: ").append(conversation.getAiResponse()).append("\n");
         }
 
-        OpenRouterRequest request = new OpenRouterRequest("mistralai/mistral-7b-instruct", List.of(new OpenRouterRequest.Message("system", List.of(new OpenRouterRequest.Content("text", SYSTEM_PROMPT, null))), new OpenRouterRequest.Message("user", List.of(new OpenRouterRequest.Content("text", conversationText.toString(), null)))));
+        OpenRouterRequest request = new OpenRouterRequest("google/gemini-2.5-flash", List.of(new OpenRouterRequest.Message("system", List.of(new OpenRouterRequest.Content("text", SYSTEM_PROMPT, null))), new OpenRouterRequest.Message("user", List.of(new OpenRouterRequest.Content("text", conversationText.toString(), null)))));
         String summaryText = openRouterClient.getCompletion(request);
 
         Summary summary = new Summary();
@@ -95,19 +95,19 @@ public class SummaryService {
         UUID userId = userService.getUserIdByUsername(username);
         UUID channelId = channelService.getChannelIdByChannelName(channelName);
         log.info("Requesting summary for user '{}' in channel '{}'", username, channelName);
-        Summary summary = summaryRepository.findByChannelIdAndUserId(channelId, userId).orElse(null);
+        Summary summary = summaryRepository.findByChannelIdAndUserUuid(channelId, userId).orElse(null);
         if (summary == null) {
             log.info("No summary found for user '{}' in channel '{}'. Generating a new one.", username, channelName);
             UserDto user = userService.findByIdAsDto(userId);
             ChannelDto channel = channelService.findByIdAsDto(channelId);
             summarizeUserInChannel(user, channel);
-            summary = summaryRepository.findByChannelIdAndUserId(channelId, userId).orElse(null);
+            summary = summaryRepository.findByChannelIdAndUserUuid(channelId, userId).orElse(null);
         }
         return summaryMapper.toDto(summary);
 
     }
 
-    public void deleteSummariesByChannelId(UUID channelId) {
-        summaryRepository.deleteByChannelId(channelId);
+    public void deleteSummariesByChannelIdAndUserId(UUID channelId, UUID userId) {
+        summaryRepository.deleteByChannelIdAndUserUuid(channelId, userId);
     }
 }

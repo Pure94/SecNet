@@ -1,5 +1,6 @@
 package com.larpologic.secretnetwork.admin;
 
+import com.larpologic.secretnetwork.channel.Channel;
 import com.larpologic.secretnetwork.channel.ChannelService;
 import com.larpologic.secretnetwork.channel.dto.ChannelDto;
 import com.larpologic.secretnetwork.conversation.ConversationService;
@@ -113,7 +114,10 @@ public class AdminService {
     @Transactional
     public void clearChannelConversations(UUID channelId) {
         conversationService.clearChannelConversations(channelId);
-        summaryService.deleteSummariesByChannelId(channelId);
+        Channel channel = channelService.findById(channelId);
+        userChannelService.findByChannel(channel).forEach(userChannel -> {
+            summaryService.deleteSummariesByChannelIdAndUserId(channelId, userChannel.getUser().getUuid());
+        });
     }
 
 }

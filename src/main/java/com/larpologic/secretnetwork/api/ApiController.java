@@ -1,6 +1,5 @@
 package com.larpologic.secretnetwork.api;
 
-import com.larpologic.secretnetwork.admin.AdminService;
 import com.larpologic.secretnetwork.api.information.InformationService;
 import com.larpologic.secretnetwork.api.information.dto.ChannelLimitDto;
 import com.larpologic.secretnetwork.api.information.dto.UserInChannelDto;
@@ -15,7 +14,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -23,21 +21,13 @@ public class ApiController {
 
     private final ConversationService conversationService;
     private final InformationService informationService;
-    private final AdminService adminService;
     private final SummaryService summaryService;
 
 
-    public ApiController(ConversationService conversationService, InformationService informationService, AdminService adminService, SummaryService summaryService) {
+    public ApiController(ConversationService conversationService, InformationService informationService, SummaryService summaryService) {
         this.conversationService = conversationService;
         this.informationService = informationService;
-        this.adminService = adminService;
         this.summaryService = summaryService;
-    }
-
-    @PostMapping("/admin/summarize")
-    public ResponseEntity<Void> summarizeConversations() {
-        adminService.summarizeConversations();
-        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/send-message")
