@@ -1,15 +1,14 @@
 package com.larpologic.secretnetwork.api.information;
 
 import com.larpologic.secretnetwork.api.information.dto.*;
-import com.larpologic.secretnetwork.domain.api.information.dto.*;
 import com.larpologic.secretnetwork.channel.Channel;
+import com.larpologic.secretnetwork.channel.repository.ChannelRepository;
 import com.larpologic.secretnetwork.user.UserDto;
 import com.larpologic.secretnetwork.userchannel.UserChannel;
-import com.larpologic.secretnetwork.conversation.repository.ChannelRepository;
-import com.larpologic.secretnetwork.conversation.repository.UserChannelRepository;
 import com.larpologic.secretnetwork.user.UserRepository;
 import com.larpologic.secretnetwork.user.User;
 import com.larpologic.secretnetwork.userchannel.dto.UserChannelDto;
+import com.larpologic.secretnetwork.userchannel.repository.UserChannelRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

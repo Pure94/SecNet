@@ -1,252 +1,105 @@
 package com.larpologic.secretnetwork.admin;
 
-import com.larpologic.secretnetwork.admin.dto.ChannelDto;
-import com.larpologic.secretnetwork.admin.dto.RoleDto;
-import com.larpologic.secretnetwork.admin.entity.Role;
-import com.larpologic.secretnetwork.channel.Channel;
+import com.larpologic.secretnetwork.channel.ChannelService;
+import com.larpologic.secretnetwork.channel.dto.ChannelDto;
 import com.larpologic.secretnetwork.conversation.ConversationService;
-import com.larpologic.secretnetwork.conversation.repository.ChannelRepository;
-import com.larpologic.secretnetwork.conversation.repository.ConversationRepository;
-import com.larpologic.secretnetwork.conversation.repository.UserChannelRepository;
-import com.larpologic.secretnetwork.user.User;
-import com.larpologic.secretnetwork.user.UserDto;
-import com.larpologic.secretnetwork.user.UserRepository;
-import com.larpologic.secretnetwork.userchannel.UserChannel;
-import com.larpologic.secretnetwork.userchannel.UserChannelKey;
-import com.larpologic.secretnetwork.userchannel.dto.UserChannelDto;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import com.larpologic.secretnetwork.role.RoleService;
+import com.larpologic.secretnetwork.role.dto.RoleDto;
+import com.larpologic.secretnetwork.user.UserService;
+import com.larpologic.secretnetwork.userchannel.UserChannelService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
 
 @Service
 public class AdminService {
 
-    private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
-    private final ChannelRepository channelRepository;
-    private final UserChannelRepository userChannelRepository;
-    private final PasswordEncoder passwordEncoder;
     private final ConversationService conversationService;
+    private final ChannelService channelService;
+    private final RoleService roleService;
+    private final UserChannelService userChannelService;
+    private final UserService userService;
 
-    public AdminService(UserRepository userRepository, RoleRepository roleRepository, ChannelRepository channelRepository, UserChannelRepository userChannelRepository, PasswordEncoder passwordEncoder , ConversationService conversationService) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.channelRepository = channelRepository;
-        this.userChannelRepository = userChannelRepository;
-        this.passwordEncoder = passwordEncoder;
+    public AdminService(ConversationService conversationService, ChannelService channelService, RoleService roleService, UserChannelService userChannelService, UserService userService) {
         this.conversationService = conversationService;
+        this.channelService = channelService;
+        this.roleService = roleService;
+        this.userChannelService = userChannelService;
+        this.userService = userService;
     }
 
     @Transactional
     public void createUser(String username, String password, String roleName) {
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(passwordEncoder.encode(password));
-
-        Role role = roleRepository.findByName(roleName);
-        if (role == null) {
-            role = new Role();
-            role.setName(roleName);
-            roleRepository.save(role);
-        }
-
-        user.setRoles(new HashSet<>(Collections.singletonList(role)));
-        userRepository.save(user);
+        userService.createUser(username, password, roleName);
     }
 
     @Transactional
     public void createRole(String roleName) {
-        Role role = new Role();
-        role.setName(roleName);
-        roleRepository.save(role);
+        roleService.createRole(roleName);
     }
 
     @Transactional
     public void updateUserPassword(UUID userId, String newPassword) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + userId));
-        user.setPassword(passwordEncoder.encode(newPassword));
-        userRepository.save(user);
+        userService.updateUserPassword(userId, newPassword);
     }
 
     @Transactional
     public void updateUserRoles(UUID userId, Set<String> newRoleNames) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + userId));
-
-        Set<Role> newRoles = new HashSet<>();
-        for (String roleName : newRoleNames) {
-            Role role = roleRepository.findByName(roleName);
-            if (role == null) {
-                throw new IllegalArgumentException("Role not found: " + roleName);
-            }
-            newRoles.add(role);
-        }
-        user.setRoles(newRoles);
-        userRepository.save(user);
+        userService.updateUserRoles(userId, newRoleNames);
     }
 
     @Transactional
     public void deleteUser(UUID userId) {
-        userRepository.deleteById(userId);
+        userService.deleteUser(userId);
     }
 
     @Transactional
     public void createChannel(String name, String systemPrompt) {
-        Channel channel = new Channel();
-        channel.setName(name);
-        channel.setSystemPrompt(systemPrompt);
-        channelRepository.save(channel);
+        channelService.createChannel(name, systemPrompt);
     }
 
     @Transactional
     public void updateChannelSystemPrompt(UUID id, String systemPrompt) {
-        Channel channel = channelRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid channel Id: " + id));
-        channel.setSystemPrompt(systemPrompt);
-        channelRepository.save(channel);
+        channelService.updateChannelSystemPrompt(id, systemPrompt);
     }
 
     @Transactional
     public void updateChannelName(UUID id, String name) {
-        Channel channel = channelRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid channel Id: " + id));
-        channel.setName(name);
-        channelRepository.save(channel);
+        channelService.updateChannelName(id, name);
     }
 
     @Transactional
     public void deleteChannel(UUID channelId) {
-        channelRepository.deleteById(channelId);
+        channelService.deleteChannel(channelId);
+    }
+
+    public List<ChannelDto> getAllChannelsAsDto() {
+        return channelService.getAllChannelsAsDto();
     }
 
     @Transactional
     public void assignUsersToChannel(UUID channelId, Map<String, String> formData) {
-        Channel channel = channelRepository.findById(channelId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid channel Id: " + channelId));
-
-        userChannelRepository.deleteAll(userChannelRepository.findByChannel(channel));
-
-        for (Map.Entry<String, String> entry : formData.entrySet()) {
-            if (entry.getKey().startsWith("user_") && entry.getValue().equals("on")) {
-                UUID userId = UUID.fromString(entry.getKey().substring(5));
-                User user = userRepository.findById(userId)
-                        .orElseThrow(() -> new IllegalArgumentException("Invalid user Id: " + userId));
-
-                String limitKey = "limit_" + userId.toString();
-                Integer limit = 100;
-                if (formData.containsKey(limitKey)) {
-                    limit = Integer.parseInt(formData.get(limitKey));
-                }
-
-                UserChannelKey userChannelKey = new UserChannelKey();
-                userChannelKey.setUser(user.getUuid());
-                userChannelKey.setChannel(channel.getId());
-
-                UserChannel userChannel = new UserChannel();
-                userChannel.setId(userChannelKey);
-                userChannel.setUser(user);
-                userChannel.setChannel(channel);
-                userChannel.setRemainingLimit(limit);
-                userChannelRepository.save(userChannel);
-            }
-        }
+        userChannelService.assignUsersToChannel(channelId, formData);
     }
 
     @Transactional
     public void updateUserLimit(UUID channelId, UUID userId, Integer newLimit) {
-        UserChannelKey userChannelKey = new UserChannelKey();
-        userChannelKey.setChannel(channelId);
-        userChannelKey.setUser(userId);
-
-        Optional<UserChannel> optionalUserChannel = userChannelRepository.findById(userChannelKey);
-
-        if (optionalUserChannel.isPresent()) {
-            UserChannel userChannel = optionalUserChannel.get();
-            userChannel.setRemainingLimit(newLimit);
-            userChannelRepository.save(userChannel);
-        } else {
-            User user = userRepository.findById(userId)
-                    .orElseThrow(() -> new IllegalArgumentException("User not found."));
-            Channel channel = channelRepository.findById(channelId)
-                    .orElseThrow(() -> new IllegalArgumentException("Channel not found."));
-            UserChannel newUserChannel = new UserChannel();
-            newUserChannel.setId(userChannelKey);
-            newUserChannel.setUser(user);
-            newUserChannel.setChannel(channel);
-            newUserChannel.setRemainingLimit(newLimit);
-            userChannelRepository.save(newUserChannel);
-        }
+        userChannelService.updateUserLimit(channelId, userId, newLimit);
     }
 
 
     @Transactional
     public void resetUserLimit(UUID channelId, UUID userId) {
-        UserChannelKey userChannelKey = new UserChannelKey();
-        userChannelKey.setChannel(channelId);
-        userChannelKey.setUser(userId);
-        UserChannel userChannel = userChannelRepository.findById(userChannelKey)
-                .orElseThrow(() -> new IllegalArgumentException("User-Channel association not found."));
-
-        userChannel.setRemainingLimit(100);
-        userChannelRepository.save(userChannel);
+        userChannelService.resetUserLimit(channelId, userId);
     }
 
-    // Konwersja na DTO
-    public List<UserDto> getAllUsersAsDto() {
-        return userRepository.findAll().stream()
-                .map(this::convertToUserDto)
-                .collect(Collectors.toList());
-    }
 
     public List<RoleDto> getAllRolesAsDto() {
-        return roleRepository.findAll().stream()
-                .map(this::convertToRoleDto)
-                .collect(Collectors.toList());
-    }
-
-    public List<ChannelDto> getAllChannelsAsDto() {
-        return channelRepository.findAll().stream()
-                .map(this::convertToChannelDto)
-                .collect(Collectors.toList());
-    }
-
-    private UserDto convertToUserDto(User user) {
-        UserDto userDto = new UserDto();
-        userDto.setUuid(user.getUuid());
-        userDto.setUsername(user.getUsername());
-        userDto.setRoles(user.getRoles().stream()
-                .map(this::convertToRoleDto)
-                .collect(Collectors.toSet()));
-        return userDto;
-    }
-
-    private RoleDto convertToRoleDto(Role role) {
-        RoleDto roleDto = new RoleDto();
-        roleDto.setUuid(role.getUuid());
-        roleDto.setName(role.getName());
-        return roleDto;
-    }
-
-    private ChannelDto convertToChannelDto(Channel channel) {
-        ChannelDto channelDto = new ChannelDto();
-        channelDto.setId(channel.getId());
-        channelDto.setName(channel.getName());
-        channelDto.setSystemPrompt(channel.getSystemPrompt());
-        channelDto.setUserChannels(channel.getUserChannels().stream()
-                .map(this::convertToUserChannelDto)
-                .collect(Collectors.toSet()));
-        return channelDto;
-    }
-
-    private UserChannelDto convertToUserChannelDto(UserChannel userChannel) {
-        UserChannelDto userChannelDto = new UserChannelDto();
-        userChannelDto.setUser(convertToUserDto(userChannel.getUser()));
-        userChannelDto.setRemainingLimit(userChannel.getRemainingLimit());
-        return userChannelDto;
+        return roleService.getAllRolesAsDto();
     }
 
     @Transactional

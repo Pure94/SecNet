@@ -1,4 +1,4 @@
-package com.larpologic.secretnetwork.admin.dto;
+package com.larpologic.secretnetwork.channel.dto;
 
 import com.larpologic.secretnetwork.userchannel.dto.UserChannelDto;
 import lombok.Getter;

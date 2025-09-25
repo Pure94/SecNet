@@ -1,6 +1,6 @@
-package com.larpologic.secretnetwork.admin;
+package com.larpologic.secretnetwork.role.repository;
 
-import com.larpologic.secretnetwork.admin.entity.Role;
+import com.larpologic.secretnetwork.role.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.UUID;
 

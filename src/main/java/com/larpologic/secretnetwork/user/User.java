@@ -1,7 +1,7 @@
 package com.larpologic.secretnetwork.user;
 
-import com.larpologic.secretnetwork.admin.entity.Role;
 import com.larpologic.secretnetwork.conversation.entity.Conversation;
+import com.larpologic.secretnetwork.role.entity.Role;
 import com.larpologic.secretnetwork.userchannel.UserChannel;
 import jakarta.persistence.*;
 import lombok.Getter;

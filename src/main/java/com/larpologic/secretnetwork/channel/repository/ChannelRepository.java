@@ -1,4 +1,4 @@
-package com.larpologic.secretnetwork.conversation.repository;
+package com.larpologic.secretnetwork.channel.repository;
 
 import com.larpologic.secretnetwork.channel.Channel;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,6 +1,7 @@
 package com.larpologic.secretnetwork.conversation;
 
 
+import com.larpologic.secretnetwork.channel.repository.ChannelRepository;
 import com.larpologic.secretnetwork.chat.OpenRouterClient;
 import com.larpologic.secretnetwork.chat.OpenRouterRequest;
 import com.larpologic.secretnetwork.conversation.dto.ConversationDto;
@@ -10,11 +11,11 @@ import com.larpologic.secretnetwork.channel.Channel;
 import com.larpologic.secretnetwork.conversation.entity.Conversation;
 import com.larpologic.secretnetwork.userchannel.UserChannel;
 import com.larpologic.secretnetwork.userchannel.UserChannelKey;
-import com.larpologic.secretnetwork.conversation.repository.ChannelRepository;
+
 import com.larpologic.secretnetwork.conversation.repository.ConversationRepository;
-import com.larpologic.secretnetwork.conversation.repository.UserChannelRepository;
 import com.larpologic.secretnetwork.user.UserRepository;
 import com.larpologic.secretnetwork.user.User;
+import com.larpologic.secretnetwork.userchannel.repository.UserChannelRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

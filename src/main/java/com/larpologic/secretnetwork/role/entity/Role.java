@@ -1,4 +1,4 @@
-package com.larpologic.secretnetwork.admin.entity;
+package com.larpologic.secretnetwork.role.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.larpologic.secretnetwork.conversation.repository;
+package com.larpologic.secretnetwork.userchannel.repository;
 
 
 import com.larpologic.secretnetwork.channel.Channel;
