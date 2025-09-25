@@ -1,11 +1,11 @@
-package com.larpologic.secretnetwork.controller;
+package com.larpologic.secretnetwork.webpage.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.larpologic.secretnetwork.conversation.dto.ChannelDto;
-import com.larpologic.secretnetwork.conversation.dto.RoleDto;
-import com.larpologic.secretnetwork.conversation.dto.UserDto;
-import com.larpologic.secretnetwork.security.AdminService;
+import com.larpologic.secretnetwork.admin.dto.ChannelDto;
+import com.larpologic.secretnetwork.admin.dto.RoleDto;
+import com.larpologic.secretnetwork.user.UserDto;
+import com.larpologic.secretnetwork.admin.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,13 +22,13 @@ import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin-panel")
-public class AdminController {
+public class AdminWebpageController {
 
     private final AdminService adminService;
     private final ObjectMapper objectMapper;
 
     @Autowired
-    public AdminController(AdminService adminService, ObjectMapper objectMapper) {
+    public AdminWebpageController(AdminService adminService, ObjectMapper objectMapper) {
         this.adminService = adminService;
         this.objectMapper = objectMapper;
     }

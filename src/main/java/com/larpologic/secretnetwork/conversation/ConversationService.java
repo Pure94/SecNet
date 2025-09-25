@@ -3,22 +3,24 @@ package com.larpologic.secretnetwork.conversation;
 
 import com.larpologic.secretnetwork.chat.OpenRouterClient;
 import com.larpologic.secretnetwork.chat.OpenRouterRequest;
+import com.larpologic.secretnetwork.conversation.dto.ConversationDto;
 import com.larpologic.secretnetwork.conversation.dto.MessageRequest;
 import com.larpologic.secretnetwork.conversation.dto.MessageResponse;
-import com.larpologic.secretnetwork.conversation.entity.*;
+import com.larpologic.secretnetwork.channel.Channel;
+import com.larpologic.secretnetwork.conversation.entity.Conversation;
+import com.larpologic.secretnetwork.userchannel.UserChannel;
+import com.larpologic.secretnetwork.userchannel.UserChannelKey;
 import com.larpologic.secretnetwork.conversation.repository.ChannelRepository;
 import com.larpologic.secretnetwork.conversation.repository.ConversationRepository;
 import com.larpologic.secretnetwork.conversation.repository.UserChannelRepository;
-import com.larpologic.secretnetwork.security.UserRepository;
-import com.larpologic.secretnetwork.security.entity.User;
+import com.larpologic.secretnetwork.user.UserRepository;
+import com.larpologic.secretnetwork.user.User;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class ConversationService {
@@ -101,5 +103,36 @@ public class ConversationService {
         conversationRepository.save(newConversation);
 
         return new MessageResponse(aiResponse, userChannel.getRemainingLimit());
+    }
+
+
+    public List<ConversationDto> getConversationHistory(String username, String channelName, int limit) {
+        Optional<User> userOptional = userRepository.findByUsername(username);
+        Optional<Channel> channelOptional = Optional.ofNullable(channelRepository.findByName(channelName));
+
+        if (userOptional.isEmpty() || channelOptional.isEmpty()) {
+            return List.of();
+        }
+
+        User user = userOptional.get();
+        Channel channel = channelOptional.get();
+
+        return conversationRepository.findLastConversationsByUserAndChannel(limit, user.getUuid(), channel.getId()).stream()
+                .map(this::convertToConversationDto)
+                .collect(Collectors.toList());
+    }
+
+    private ConversationDto convertToConversationDto(Conversation conversation) {
+        ConversationDto dto = new ConversationDto();
+        dto.setId(conversation.getId());
+        dto.setUserMessage(conversation.getUserMessage());
+        dto.setAiResponse(conversation.getAiResponse());
+        dto.setCreatedAt(conversation.getCreatedAt());
+        return dto;
+    }
+
+    @Transactional
+    public void clearChannelConversations(UUID channelId) {
+        conversationRepository.deleteByChannelId(channelId);
     }
 }

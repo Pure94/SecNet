@@ -1,5 +1,7 @@
-package com.larpologic.secretnetwork.conversation.entity;
+package com.larpologic.secretnetwork.channel;
 
+import com.larpologic.secretnetwork.conversation.entity.Conversation;
+import com.larpologic.secretnetwork.userchannel.UserChannel;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

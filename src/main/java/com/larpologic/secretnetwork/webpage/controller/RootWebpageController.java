@@ -1,10 +1,10 @@
-package com.larpologic.secretnetwork.controller;
+package com.larpologic.secretnetwork.webpage.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class RootController {
+public class RootWebpageController {
 
     @GetMapping("/")
     public String showLoginPage() {

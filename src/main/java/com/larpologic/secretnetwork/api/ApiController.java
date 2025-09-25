@@ -1,23 +1,37 @@
-package com.larpologic.secretnetwork.controller;
+package com.larpologic.secretnetwork.api;
 
-import com.larpologic.secretnetwork.conversation.InformationService;
-import com.larpologic.secretnetwork.conversation.dto.*;
+import com.larpologic.secretnetwork.api.information.dto.ChannelLimitDto;
+import com.larpologic.secretnetwork.api.information.dto.UserInChannelDto;
+import com.larpologic.secretnetwork.api.information.dto.UserWithChannelsDto;
+import com.larpologic.secretnetwork.conversation.ConversationService;
+import com.larpologic.secretnetwork.api.information.InformationService;
+import com.larpologic.secretnetwork.conversation.dto.ConversationDto;
+import com.larpologic.secretnetwork.conversation.dto.MessageRequest;
+import com.larpologic.secretnetwork.conversation.dto.MessageResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/info-api")
-public class InformationController {
+@RequestMapping("/api")
+public class ApiController {
 
+    private final ConversationService conversationService;
     private final InformationService informationService;
 
-    public InformationController(InformationService informationService) {
+
+    public ApiController(ConversationService conversationService, InformationService informationService) {
+        this.conversationService = conversationService;
         this.informationService = informationService;
     }
+
+    @PostMapping("/send-message")
+    public ResponseEntity<MessageResponse> sendMessage(@RequestBody MessageRequest request) {
+        MessageResponse response = conversationService.handleMessage(request);
+        return ResponseEntity.ok(response);
+    }
+
 
     @GetMapping("/user/{username}/channels")
     public ResponseEntity<List<ChannelLimitDto>> getUserChannels(@PathVariable String username) {
@@ -36,7 +50,7 @@ public class InformationController {
             @PathVariable String username,
             @PathVariable String channelName,
             @PathVariable int limit) {
-        List<ConversationDto> history = informationService.getConversationHistory(username, channelName, limit);
+        List<ConversationDto> history = conversationService.getConversationHistory(username, channelName, limit);
         return ResponseEntity.ok(history);
     }
 

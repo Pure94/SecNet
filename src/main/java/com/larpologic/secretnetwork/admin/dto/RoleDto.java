@@ -1,4 +1,4 @@
-package com.larpologic.secretnetwork.conversation.dto;
+package com.larpologic.secretnetwork.admin.dto;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

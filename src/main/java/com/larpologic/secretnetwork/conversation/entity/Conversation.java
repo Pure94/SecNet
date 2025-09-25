@@ -1,10 +1,11 @@
 package com.larpologic.secretnetwork.conversation.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.larpologic.secretnetwork.channel.Channel;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import com.larpologic.secretnetwork.security.entity.User;
+import com.larpologic.secretnetwork.user.User;
 
 import java.time.OffsetDateTime;
 import java.util.UUID;

@@ -1,5 +1,6 @@
-package com.larpologic.secretnetwork.conversation.dto;
+package com.larpologic.secretnetwork.user;
 
+import com.larpologic.secretnetwork.admin.dto.RoleDto;
 import lombok.Getter;
 import lombok.Setter;
 import java.util.Set;

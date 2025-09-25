@@ -15,7 +15,7 @@ public class OpenRouterClient {
         this.webClient = WebClient.builder()
                 .baseUrl("https://openrouter.ai/api/v1")
                 .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + apiKey)
-                .defaultHeader("X-Title", "NeuroBioMyko") // Optional. Site title for rankings on openrouter.ai.
+                .defaultHeader("X-Title", "NeuroBioMyko")
                 .build();
     }
 

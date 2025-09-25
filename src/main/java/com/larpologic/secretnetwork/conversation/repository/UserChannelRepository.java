@@ -1,10 +1,10 @@
 package com.larpologic.secretnetwork.conversation.repository;
 
 
-import com.larpologic.secretnetwork.conversation.entity.Channel;
-import com.larpologic.secretnetwork.conversation.entity.UserChannel;
-import com.larpologic.secretnetwork.conversation.entity.UserChannelKey;
-import com.larpologic.secretnetwork.security.entity.User;
+import com.larpologic.secretnetwork.channel.Channel;
+import com.larpologic.secretnetwork.userchannel.UserChannel;
+import com.larpologic.secretnetwork.userchannel.UserChannelKey;
+import com.larpologic.secretnetwork.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.Optional;

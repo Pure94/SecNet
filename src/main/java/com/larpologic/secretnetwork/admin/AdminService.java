@@ -1,28 +1,24 @@
-package com.larpologic.secretnetwork.security;
+package com.larpologic.secretnetwork.admin;
 
-import com.larpologic.secretnetwork.conversation.dto.ChannelDto;
-import com.larpologic.secretnetwork.conversation.dto.RoleDto;
-import com.larpologic.secretnetwork.conversation.dto.UserChannelDto;
-import com.larpologic.secretnetwork.conversation.dto.UserDto;
-import com.larpologic.secretnetwork.conversation.entity.Channel;
-import com.larpologic.secretnetwork.conversation.entity.UserChannel;
-import com.larpologic.secretnetwork.conversation.entity.UserChannelKey;
+import com.larpologic.secretnetwork.admin.dto.ChannelDto;
+import com.larpologic.secretnetwork.admin.dto.RoleDto;
+import com.larpologic.secretnetwork.admin.entity.Role;
+import com.larpologic.secretnetwork.channel.Channel;
+import com.larpologic.secretnetwork.conversation.ConversationService;
 import com.larpologic.secretnetwork.conversation.repository.ChannelRepository;
 import com.larpologic.secretnetwork.conversation.repository.ConversationRepository;
 import com.larpologic.secretnetwork.conversation.repository.UserChannelRepository;
-import com.larpologic.secretnetwork.security.entity.Role;
-import com.larpologic.secretnetwork.security.entity.User;
+import com.larpologic.secretnetwork.user.User;
+import com.larpologic.secretnetwork.user.UserDto;
+import com.larpologic.secretnetwork.user.UserRepository;
+import com.larpologic.secretnetwork.userchannel.UserChannel;
+import com.larpologic.secretnetwork.userchannel.UserChannelKey;
+import com.larpologic.secretnetwork.userchannel.dto.UserChannelDto;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -33,15 +29,15 @@ public class AdminService {
     private final ChannelRepository channelRepository;
     private final UserChannelRepository userChannelRepository;
     private final PasswordEncoder passwordEncoder;
-    private final ConversationRepository conversationRepository;
+    private final ConversationService conversationService;
 
-    public AdminService(UserRepository userRepository, RoleRepository roleRepository, ChannelRepository channelRepository, UserChannelRepository userChannelRepository, PasswordEncoder passwordEncoder, ConversationRepository conversationRepository) {
+    public AdminService(UserRepository userRepository, RoleRepository roleRepository, ChannelRepository channelRepository, UserChannelRepository userChannelRepository, PasswordEncoder passwordEncoder , ConversationService conversationService) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.channelRepository = channelRepository;
         this.userChannelRepository = userChannelRepository;
         this.passwordEncoder = passwordEncoder;
-        this.conversationRepository = conversationRepository;
+        this.conversationService = conversationService;
     }
 
     @Transactional
@@ -253,21 +249,9 @@ public class AdminService {
         return userChannelDto;
     }
 
-
     @Transactional
     public void clearChannelConversations(UUID channelId) {
-        conversationRepository.deleteByChannelId(channelId);
+        conversationService.clearChannelConversations(channelId);
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
-
-    public List<Role> getAllRoles() {
-        return roleRepository.findAll();
-    }
-
-    public List<Channel> getAllChannels() {
-        return channelRepository.findAll();
-    }
 }

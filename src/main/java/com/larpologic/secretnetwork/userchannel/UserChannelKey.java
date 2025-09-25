@@ -1,4 +1,4 @@
-package com.larpologic.secretnetwork.conversation.entity;
+package com.larpologic.secretnetwork.userchannel;
 
 import jakarta.persistence.Embeddable;
 import lombok.EqualsAndHashCode;
