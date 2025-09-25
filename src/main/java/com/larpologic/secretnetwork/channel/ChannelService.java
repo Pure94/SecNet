@@ -52,11 +52,15 @@ public class ChannelService {
     public List<ChannelDto> getAllChannelsAsDto() {
         return channelRepository.findAll().stream()
                 .map(channelMapper::convertToChannelDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public Channel findById(UUID channelId) {
         return channelRepository.findById(channelId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid channel Id: " + channelId));
+    }
+
+    public Channel findByName(String name) {
+        return channelRepository.findByName(name);
     }
 }

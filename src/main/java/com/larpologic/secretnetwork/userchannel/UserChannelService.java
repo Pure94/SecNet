@@ -3,11 +3,12 @@ package com.larpologic.secretnetwork.userchannel;
 import com.larpologic.secretnetwork.channel.Channel;
 import com.larpologic.secretnetwork.channel.ChannelService;
 import com.larpologic.secretnetwork.user.User;
-import com.larpologic.secretnetwork.user.UserRepository;
+import com.larpologic.secretnetwork.user.UserService;
 import com.larpologic.secretnetwork.userchannel.repository.UserChannelRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
@@ -16,12 +17,12 @@ import java.util.UUID;
 public class UserChannelService {
 
     private final UserChannelRepository userChannelRepository;
-    private final UserRepository userRepository;
+    private final UserService userService;
     private final ChannelService channelService;
 
-    public UserChannelService(UserChannelRepository userChannelRepository, UserRepository userRepository, ChannelService channelService) {
+    public UserChannelService(UserChannelRepository userChannelRepository, UserService userService, ChannelService channelService) {
         this.userChannelRepository = userChannelRepository;
-        this.userRepository = userRepository;
+        this.userService = userService;
         this.channelService = channelService;
     }
 
@@ -34,7 +35,7 @@ public class UserChannelService {
         for (Map.Entry<String, String> entry : formData.entrySet()) {
             if (entry.getKey().startsWith("user_") && entry.getValue().equals("on")) {
                 UUID userId = UUID.fromString(entry.getKey().substring(5));
-                User user = userRepository.findById(userId)
+                User user = userService.findById(userId)
                         .orElseThrow(() -> new IllegalArgumentException("Invalid user Id: " + userId));
 
                 String limitKey = "limit_" + userId.toString();
@@ -70,7 +71,7 @@ public class UserChannelService {
             userChannel.setRemainingLimit(newLimit);
             userChannelRepository.save(userChannel);
         } else {
-            User user = userRepository.findById(userId)
+            User user = userService.findById(userId)
                     .orElseThrow(() -> new IllegalArgumentException("User not found."));
             Channel channel = channelService.findById(channelId);
             UserChannel newUserChannel = new UserChannel();
@@ -93,5 +94,13 @@ public class UserChannelService {
 
         userChannel.setRemainingLimit(100);
         userChannelRepository.save(userChannel);
+    }
+
+    public List<UserChannel> findByUser(User user) {
+        return userChannelRepository.findByUser(user);
+    }
+
+    public List<UserChannel> findByChannel(Channel channel) {
+        return userChannelRepository.findByChannel(channel);
     }
 }

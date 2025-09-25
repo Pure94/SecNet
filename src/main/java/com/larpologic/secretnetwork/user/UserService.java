@@ -25,6 +25,18 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
+    public Optional<User> findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    public Optional<User> findById(UUID userId) {
+        return userRepository.findById(userId);
+    }
+
     @Transactional
     public void createUser(String username, String password, String roleName) {
         User user = new User();
