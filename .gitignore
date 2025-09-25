@@ -34,3 +34,4 @@ build/
 /.qodo/
 /.idea/
 /src/main/resources/application.secret.properties
+/GEMINI.md

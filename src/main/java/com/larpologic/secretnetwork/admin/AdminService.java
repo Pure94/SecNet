@@ -7,6 +7,7 @@ import com.larpologic.secretnetwork.role.RoleService;
 import com.larpologic.secretnetwork.role.dto.RoleDto;
 import com.larpologic.secretnetwork.user.UserService;
 import com.larpologic.secretnetwork.userchannel.UserChannelService;
+import com.larpologic.secretnetwork.summary.SummaryService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,13 +24,20 @@ public class AdminService {
     private final RoleService roleService;
     private final UserChannelService userChannelService;
     private final UserService userService;
+    private final SummaryService summaryService;
 
-    public AdminService(ConversationService conversationService, ChannelService channelService, RoleService roleService, UserChannelService userChannelService, UserService userService) {
+    public AdminService(ConversationService conversationService, ChannelService channelService, RoleService roleService, UserChannelService userChannelService, UserService userService, SummaryService summaryService) {
         this.conversationService = conversationService;
         this.channelService = channelService;
         this.roleService = roleService;
         this.userChannelService = userChannelService;
         this.userService = userService;
+        this.summaryService = summaryService;
+    }
+
+    @Transactional
+    public void summarizeConversations() {
+        summaryService.summarizeConversations();
     }
 
     @Transactional
@@ -105,6 +113,7 @@ public class AdminService {
     @Transactional
     public void clearChannelConversations(UUID channelId) {
         conversationService.clearChannelConversations(channelId);
+        summaryService.deleteSummariesByChannelId(channelId);
     }
 
 }

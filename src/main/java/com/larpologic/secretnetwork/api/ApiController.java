@@ -1,17 +1,21 @@
 package com.larpologic.secretnetwork.api;
 
+import com.larpologic.secretnetwork.admin.AdminService;
+import com.larpologic.secretnetwork.api.information.InformationService;
 import com.larpologic.secretnetwork.api.information.dto.ChannelLimitDto;
 import com.larpologic.secretnetwork.api.information.dto.UserInChannelDto;
 import com.larpologic.secretnetwork.api.information.dto.UserWithChannelsDto;
 import com.larpologic.secretnetwork.conversation.ConversationService;
-import com.larpologic.secretnetwork.api.information.InformationService;
 import com.larpologic.secretnetwork.conversation.dto.ConversationDto;
 import com.larpologic.secretnetwork.conversation.dto.MessageRequest;
 import com.larpologic.secretnetwork.conversation.dto.MessageResponse;
+import com.larpologic.secretnetwork.summary.SummaryService;
+import com.larpologic.secretnetwork.summary.dto.SummaryDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -19,11 +23,21 @@ public class ApiController {
 
     private final ConversationService conversationService;
     private final InformationService informationService;
+    private final AdminService adminService;
+    private final SummaryService summaryService;
 
 
-    public ApiController(ConversationService conversationService, InformationService informationService) {
+    public ApiController(ConversationService conversationService, InformationService informationService, AdminService adminService, SummaryService summaryService) {
         this.conversationService = conversationService;
         this.informationService = informationService;
+        this.adminService = adminService;
+        this.summaryService = summaryService;
+    }
+
+    @PostMapping("/admin/summarize")
+    public ResponseEntity<Void> summarizeConversations() {
+        adminService.summarizeConversations();
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/send-message")
@@ -58,5 +72,10 @@ public class ApiController {
     public ResponseEntity<List<UserWithChannelsDto>> getAllUsersWithChannelsAndLimits() {
         List<UserWithChannelsDto> users = informationService.getAllUsersWithChannelsAndLimits();
         return ResponseEntity.ok(users);
+    }
+    @GetMapping("/user/{username}/channel/{channelName}/summary")
+    public ResponseEntity<SummaryDto> getSummaryForUserInChannel(@PathVariable String username, @PathVariable String channelName) {
+        SummaryDto summary = summaryService.getSummaryForUserInChannel(username, channelName);
+        return ResponseEntity.ok(summary);
     }
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -22,12 +21,19 @@ public class UserService {
     public List<UserDto> getAllUsersAsDto() {
         return userRepository.findAll().stream()
                 .map(userMapper::convertToUserDto)
-                .collect(Collectors.toList());
-    }
+                .toList();    }
 
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
+    public UUID getUserIdByUsername(String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("User not found: " + username));
+        return user.getUuid();
+    }
+
+
+
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
@@ -35,6 +41,12 @@ public class UserService {
 
     public Optional<User> findById(UUID userId) {
         return userRepository.findById(userId);
+    }
+
+    public UserDto findByIdAsDto(UUID userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id: " + userId));
+        return userMapper.convertToUserDto(user);
     }
 
     @Transactional

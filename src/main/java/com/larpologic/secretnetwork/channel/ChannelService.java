@@ -49,15 +49,38 @@ public class ChannelService {
         channelRepository.deleteById(channelId);
     }
 
+
+    public ChannelDto getChannelByNameAsDto(String channelName) {
+        return channelMapper.convertToChannelDto(channelRepository.findByName(channelName));
+    }
+
+    public UUID getChannelIdByChannelName(String channelName) {
+        Channel channel = channelRepository.findByName(channelName);
+        if (channel == null) {
+            throw new IllegalArgumentException("Channel not found: " + channelName);
+        }
+        return channel.getId();
+    }
+
     public List<ChannelDto> getAllChannelsAsDto() {
         return channelRepository.findAll().stream()
                 .map(channelMapper::convertToChannelDto)
                 .toList();
     }
 
+    public List<Channel> getAllChannels() {
+        return channelRepository.findAll();
+    }
+
     public Channel findById(UUID channelId) {
         return channelRepository.findById(channelId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid channel Id: " + channelId));
+    }
+
+    public ChannelDto findByIdAsDto(UUID channelId) {
+        Channel channel = channelRepository.findById(channelId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid channel Id: " + channelId));
+        return channelMapper.convertToChannelDto(channel);
     }
 
     public Channel findByName(String name) {

@@ -11,6 +11,8 @@ import java.util.UUID;
 
 public interface ConversationRepository extends JpaRepository<Conversation, UUID> {
 
+    List<Conversation> findAllByChannelIdOrderByCreatedAtAsc(UUID channelId);
+
     @Query(value = "SELECT * FROM conversations WHERE user_id = :userId AND channel_id = :channelId ORDER BY created_at DESC LIMIT :N", nativeQuery = true)
     List<Conversation> findLastConversationsByUserAndChannel(
             @Param("N") int N,

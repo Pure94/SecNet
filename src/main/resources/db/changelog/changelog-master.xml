@@ -44,4 +44,13 @@
                 stripComments="true"
         />
     </changeSet>
+    <changeSet id="3" author="your_name">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="conversations"/>
+            </not>
+        </preConditions>
+        <sqlFile path="sql/03-create-conversations-table.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+    <include file="sql/04-create-summaries-table.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>

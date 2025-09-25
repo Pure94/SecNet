@@ -21,6 +21,14 @@
             <h2>PANEL ADMINISTRACYJNY</h2>
         </div>
         <div class="panel-content">
+            <div class="general-actions">
+                <h3>Akcje ogólne</h3>
+                <form action="/admin-panel/summarize-conversations" method="post">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    <button type="submit" class="cyber-button">Podsumuj rozmowy</button>
+                </form>
+            </div>
+
             <div class="user-management">
                 <div>
                     <h3>Dodaj nowego użytkownika</h3>

@@ -136,4 +136,10 @@ public class AdminWebpageController {
         adminService.clearChannelConversations(channelId);
         return "redirect:/admin-panel";
     }
+
+    @PostMapping("/summarize-conversations")
+    public String summarizeConversations() {
+        adminService.summarizeConversations();
+        return "redirect:/admin-panel";
+    }
 }
