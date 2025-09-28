@@ -43,6 +43,7 @@ public class SummaryService {
         Podsumowanie powinno zawierać główne punkty, decyzje i zadania do wykonania.
         Nie należy włączać żadnych osobistych opinii ani interpretacji.
         Podsumowanie powinno być łatwe do przeczytania i zrozumienia dla kogoś, kto nie czytał pełnej rozmowy.
+        Podsumowanie powinno zawierac informacje o tym kto bral udzial w konwersacji. Jesli jest to mozliwe.
             """;
 
     public void summarizeConversations() {
